@@ -1,5 +1,5 @@
-create user edienterprise
-identified by edienterprise
+create user cloudedi
+identified by cloudedi
 default tablespace users
 temporary tablespace temp
 quota 0 on system
@@ -14,4 +14,4 @@ grant
   drop any materialized view, 
   query rewrite, 
   global query rewrite 
-  to edienterprise;
+  to cloudedi;
