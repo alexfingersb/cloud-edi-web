@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Cloud Edi</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+<link href="css/bootstrap-custom.css" rel="stylesheet">
+<link rel="shortcut icon" href="img/logo.ico">
+</head>
+<body>
+	<script>
+		var sock = new WebSocket("ws://localhost:8080/cloud-edi-web/echo");
+		sock.onmessage = function(event) {
+			alert(event.data);
+		}
+	</script>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/i18next-1.10.1.min.js"></script>
+	<script src="js/user.js"></script>
+	
+	<div id="header" class="row">
+		<nav class="navbar navbar-custom">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header-custom">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> 
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span>
+					</button>
+					<img src="img/logo.png" >
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="navbar">
+					<ul class="nav navbar-nav btn-lg">
+						<li>
+							<a href="pages/dashboard/dashboard.html">
+								<span class="glyphicon glyphicon-dashboard" aria-hidden="true" data-i18n="nav.dashboard"></span>
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+								
+						<li>
+							<a href="pages/context/route_form.html">
+								<span class="glyphicon glyphicon-th-list" aria-hidden="true" data-i18n="nav.route"></span>
+							</a>
+						</li>
+							
+						<li>
+							<a href="pages/users/user_list.html">
+								<span class="glyphicon glyphicon-user"	aria-hidden="true" data-i18n="nav.users"></span>
+							</a>
+						</li>
+						
+						<li>
+							<a href="pages/download/download.html" >
+								<span class="glyphicon glyphicon-cloud-download" aria-hidden="true" data-i18n="nav.downloads"></span>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#">
+								<img id="pt-BR" class="flags" src="img/pt.jpg">
+							</a>
+						</li>
+								
+						<li>
+							<a href="#" >
+								<img id="en-US" class="flags" src="img/us.png">
+							</a>
+						</li>
+
+						<li>
+							<a href="#">
+								<img id="es" class="flags" src="img/es.png">
+							</a>
+						</li>
+						
+						<li>
+							<a href="pages/help/about.html">
+								<span data-i18n="nav.about"	class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span data-i18n="nav.logoff" class="glyphicon glyphicon-off" aria-hidden="true"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+	</div>
+
+	<div id="content" class="container-custom">
+		<button onclick="sock.send('hey duke')"
+			class="glyphicon glyphicon-search btn btn-primary">send</button>
+		
+		
+				
+	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('a').click(function(e) {
+				e.preventDefault();
+				if ($(this).attr("href") !== "#") {
+					$('#content').load($(this).attr('href'));
+				}
+			});
+		});
+		
+		i18n.init({
+			  fallbackLng: 'pt-BR'
+			  ,debug: true
+			  ,fixLng: true
+			  ,load: 'current'
+			},
+			 
+			function(translation) {
+			  $('[data-i18n]').i18n();
+			  //var appName = translation('app.name');
+			});
+		
+		$('.flags').on('click', function(e) {
+			e.preventDefault();
+			i18n.setLng($(this).attr('id'), {fixLng: true}, function(translation) {
+		    	$('[data-i18n]').i18n();
+		  	});
+		});
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+.container-custom {
+  padding-right: 0%;
+  padding-left: 0%;
+  margin-right: 0%;
+  margin-left: 1%;
+  background-color: #E0E0E0;
+}
+
+@media (min-width: 1200px) {
+  .container-custom {
+    width: 98%;
+  }
+}
+
+.navbar-custom {
+  background-color: #58adf0;
+  border-color: #e7e7e7;
+  background-image: url('../img/cloud3.jpg');
+  background-repeat: repeat-x;
+  background-size: 7% 100%;
+}
+
+.navbar-custom .navbar-brand {
+  color: #777;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+.navbar-custom .navbar-text {
+  color: #ffffff;
+}
+.navbar-custom .navbar-nav > li > a {
+  color: #ffffff;
+  font-size: large;
+}
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
+  text-decoration: none;
+    border-bottom-color: #5D519C;
+    border-bottom-style: solid;
+}
+.navbar-custom .navbar-nav > .active > a,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: 7px;
+}
+
+@media (min-width: 768px) {
+	.navbar-header-custom {
+	    float: left;
+	    padding-left: 20px;
+	}
+}
+
+.navbar-header-custom:before,
+.navbar-header-custom:after,
+
+.container > .navbar-header-custom,
+.container-fluid > .navbar-header-custom,
+.container > .navbar-collapse,
+.container-fluid > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .container > .navbar-header-custom,
+  .container-fluid > .navbar-header-custom,
+  .container > .navbar-collapse,
+  .container-fluid > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}

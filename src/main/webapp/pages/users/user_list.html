@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 data-i18n="user.listTitle"></h1>
+
+	<div class="row">
+		<div class="col-md-10 col-centered">
+			<div class="panel panel-primary">
+				<!-- Default panel contents -->
+				<div class="panel-heading"
+					data-i18n="user.systemUsers"></div>
+				<div class="panel-body">
+					<a href="pages/users/user_form.html" class="btn btn-info pull-right"
+						data-i18n="actions.buttonNewUser" data-action="new">
+					</a>
+				</div>
+				<table class="table table-hover">
+					<tr>
+						<th data-i18n="user.name"></th>
+						<th data-i18n="user.email"></th>
+						<th data-i18n="user.login"></th>
+						<th data-i18n="user.profile"></th>
+						<th data-i18n="actions.title" class="text-center"></th>
+					</tr>
+					<tr>
+						<td>Alexandre Finger Sobrinho</td>
+						<td>alex.fingersb@gmail.com</td>
+						<td>alexfingersb</td>
+						<td>Admin</td>
+						<td>
+							<a href="#">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
+							</a>
+							<a href="#">
+								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td>Vanessa Paes Santos</td>
+						<td>vanessarspaes@gmail.com</td>
+						<td>vanessars</td>
+						<td>Usuário</td>
+						<td>
+							<a href="#">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
+							</a>
+							<a href="#">
+								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td>Steve Jobs</td>
+						<td>jobs@apple.com</td>
+						<td>jobs</td>
+						<td>Usuário</td>
+						<td>
+							<a href="#">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
+							</a>
+							<a href="#">
+								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td>Bill Gates</td>
+						<td>gates@windows.com.br</td>
+						<td>bill</td>
+						<td>Usuário</td>
+						<td>
+							<a href="#" data-action="edit">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
+							</a>
+							<a href="#" data-action="remove" data-id="1">
+								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script lang="javascript">
+		$(document).ready(function() {
+			$('a').click(function(e) {
+				e.preventDefault();
+				if ($(this).attr("data-action") === "new") {
+					$('#content').load($(this).attr('href'));
+				} if ($(this).attr("data-action") === "edit") {
+					alert("Alterar dados do usuario");
+				} if ($(this).attr("data-action") === "remove") {
+					//alert($(this).attr("data-id"))
+					removeUser($(this).attr("data-id"))
+				}
+			});
+		});
+		$('[data-i18n]').i18n();
+	</script>
+</body>
+</html>

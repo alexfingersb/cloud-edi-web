@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+#menu {
+	padding-top: 10px;
+}
+
+#logotipo {
+	width: 100px;
+	height: 80px;
+	padding-right: 10px;
+	padding-left: 7px;
+}
+
+.flags {
+	width: 32px;
+	height: 32px;
+}
+
+h1 {
+	color: #31708f;
+	font-style: italic;
+}
+
+.aboutMeImg {
+	width: 140px;
+	height: 140px;
+}
+
+#aboutName {
+	font-family: fantasy;
+	color: #899096;
+	font-size: x-large;
+	font-weight: bold;
+}
+
+#aboutJobTitle {
+    font-family: sans-serif;
+    color: #69838c;
+    font-size: large;
+    font-weight: bold;
+}
+
+.socialicon {
+	width: 32px;
+	heigth: 32px;
+}
+
+.glyphicon span {
+	padding-right: 7px;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}

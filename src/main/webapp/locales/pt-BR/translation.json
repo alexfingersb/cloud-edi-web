@@ -1,0 +1,48 @@
+{
+  "app": {
+    "name": "i18next"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "route": "Rotas",
+    "users": "Usários",
+    "downloads" : "Downloads",
+    "about": "Sobre",
+    "logoff": "Sair"
+  },
+  "dashboard": {
+  	"title": "Dashboard",
+  	"fileName": "Nome do Arquivo",
+  	"fileSize" : "Tamanho",
+  	"fileDate": "Data do Envio",
+  	"receiver": "Destinatário",
+  	"sender": "Origem",
+  	"status": "Estatus",
+  	"lastestFilesSent": "Últimos Arquivos Que Voce Enviou",
+  	"lastestFilesReceived": "Últimos Arquivos que Voce Recebeu"
+  },
+  "about": {
+  	"developedBy": "Desenvolvido por",
+  	"job1Title": "Fundador & Desenvolvedor"
+  },
+  "user": {
+  	"listTitle": "Listagem de Usuários",
+  	"newTitle": "Novo Usuário",
+  	"name": "Nome",
+  	"email": "E-Mail",
+  	"login": "Login",
+  	"password": "Senha",
+  	"passwordConfirm": "Confirmar Senha",
+  	"profile": "Perfil",
+  	"systemUsers": "Usuários do Sistema"
+  },
+  "actions": {
+  	"title": "Açōes",
+  	"edit": "Editar",
+  	"remove": "Remover",
+  	"save": "Salvar",
+  	"cancel": "Cancelar",
+  	"buttonSeeAll": "Ver todos",
+  	"buttonNewUser": "Novo Usuário"
+  }
+}
