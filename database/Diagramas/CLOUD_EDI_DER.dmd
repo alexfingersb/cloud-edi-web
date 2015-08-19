@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="CLOUD_EDI_DER" id="7622D8A4-7DD6-EDA9-C1E7-FF4E58F39A4F" version="3.5">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:16:02 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>7622D8A4-7DD6-EDA9-C1E7-FF4E58F39A4F</designId>
+</OSDM_Design>

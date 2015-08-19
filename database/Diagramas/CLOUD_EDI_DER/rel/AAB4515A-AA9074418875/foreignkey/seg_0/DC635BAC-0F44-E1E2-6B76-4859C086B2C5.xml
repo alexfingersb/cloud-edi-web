@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="DC635BAC-0F44-E1E2-6B76-4859C086B2C5" name="USER_ROUTE_ROUTE_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:49 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<containerWithKeyObject>A125A40A-566F-4195-C723-02E1D969DB14</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>0BB59A89-1121-4257-5416-8F8469891227</localFKIndex>
+<keyObject>56ADF3DD-4020-5323-5BF5-0B90A643B7C9</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

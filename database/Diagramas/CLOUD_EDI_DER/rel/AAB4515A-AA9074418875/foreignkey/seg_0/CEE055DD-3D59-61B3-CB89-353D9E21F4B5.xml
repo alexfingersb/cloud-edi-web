@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="CEE055DD-3D59-61B3-CB89-353D9E21F4B5" name="AGENT_DOWNLOAD_USER_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-25 22:16:37 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<containerWithKeyObject>232EA0CC-717C-1975-81E3-C2C90DCC8B8F</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>645BD614-D23B-DB76-E1E0-8887FA1B0196</localFKIndex>
+<keyObject>17CA11D6-F07F-C141-8963-2B1CF1391A99</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="494B38A0-EFAC-4B48-04E1-7C79928BC68D" name="MESSAGE_LOG">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:07:41 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="4D6600B6-62E6-52AD-D4B1-E219E513F508">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:20:35 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FILE_NAME" id="C30BF7A0-B6F9-A262-BD99-75C2F1CB7A0A">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:20:35 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FILE_LENGTH" id="B922F52A-C170-0A16-E5D6-4E72B6A5FA48">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:20:35 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FILE_DATE" id="E27CB594-1AEE-A268-577A-0866BD4A8C8B">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:20:35 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SENT_DATE" id="AA1E2674-48D5-082A-5CA8-7A1BF07A39A3">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:20:35 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECEIVED_DATE" id="F463679D-ABDE-33AD-A689-8902F5897EE7">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:20:35 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ROUTE_TO_ID" id="83A10C84-2793-A80A-9F53-67D0F8F43869">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:21:10 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<delegate>B92DCFE6-6440-3CD8-92EB-C9310B416F49</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1C703088-F916-9D76-54EA-0C1A9F9F9D46" referredColumn="B92DCFE6-6440-3CD8-92EB-C9310B416F49"/>
+</associations>
+</Column>
+<Column name="ROUTE_FROM_ID" id="538628AC-8F74-EB95-0BBB-ABE67C9FC8A5">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:21:30 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<delegate>A1590C4B-BCB1-9DD5-D446-DAB937392455</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B937DEDB-958A-C2AC-25A6-4898FCCF3D85" referredColumn="A1590C4B-BCB1-9DD5-D446-DAB937392455"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DBFED2D7-80F8-2A2B-9A4C-AC766812461E" name="MESSAGE_LOG_PK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:20:35 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D6600B6-62E6-52AD-D4B1-E219E513F508"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="02FF6849-6CBC-9E3E-C262-C18F7750300D" name="MESSAGE_LOG_ROUTE_TO_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:21:10 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="83A10C84-2793-A80A-9F53-67D0F8F43869"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="88E16C41-FFC4-2F3D-FDA6-B7661C3B9B6C" name="MESSAGE_LOG_ROUTE_FROM_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 22:21:30 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="538628AC-8F74-EB95-0BBB-ABE67C9FC8A5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

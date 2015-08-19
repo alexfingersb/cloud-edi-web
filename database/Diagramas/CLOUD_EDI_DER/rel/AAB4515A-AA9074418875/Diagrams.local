@@ -1,0 +1,4 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="main_view" objectID="26721DB7-75C5-A371-1DED-745078A77FE8" name="Cloud_EDI" visible="true"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

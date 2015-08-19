@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E87B4787-7C9D-78CC-F53B-9CD6FCA5D7CA" name="USER">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:18:15 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="EC3B125E-48E0-B5F0-C9E9-5645F2CFF489">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:18:51 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="A6A5D7C0-6804-2A9B-E0A4-51C1DEC120FC">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:24:30 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USERNAME" id="935E2D7A-0D87-F20E-649C-EE87BF012839">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:24:30 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PASSWORD" id="1F31923F-12D8-E27D-2F1C-DF617DA51235">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:24:30 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMAIL" id="609AE755-5319-AD5F-DE7F-8F48A8ED00B0">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:32:27 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="17CA11D6-F07F-C141-8963-2B1CF1391A99" name="USER_PK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:18:51 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EC3B125E-48E0-B5F0-C9E9-5645F2CFF489"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

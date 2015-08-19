@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F7480305-CDF3-9100-2B43-B2316477B106" name="ROUTE">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:33:08 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="99462B3C-B3F8-6C19-4749-94014676DFE0">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:35:14 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPTION" id="B242F3B7-6DEB-A8A0-ACE2-B9B614F8E521">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:35:14 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="56ADF3DD-4020-5323-5BF5-0B90A643B7C9" name="ROUTE_PK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:35:14 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="99462B3C-B3F8-6C19-4749-94014676DFE0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

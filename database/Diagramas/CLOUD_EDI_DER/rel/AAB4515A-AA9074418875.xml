@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Cloud_EDI" id="AAB4515A-4162-0592-2C74-AA9074418875" mainViewID="26721DB7-75C5-A371-1DED-745078A77FE8">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:16:03 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
+</relationalModel>

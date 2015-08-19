@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A125A40A-566F-4195-C723-02E1D969DB14" name="USER_ROUTE">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:00 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="24C7965A-3CE0-D8CF-7DBD-815047A7291A">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:22 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ROUTE_ID" id="3788FE0C-5E79-17D2-B823-C16310F2EB46">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:49 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<delegate>99462B3C-B3F8-6C19-4749-94014676DFE0</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DC635BAC-0F44-E1E2-6B76-4859C086B2C5" referredColumn="99462B3C-B3F8-6C19-4749-94014676DFE0"/>
+</associations>
+</Column>
+<Column name="USER_ID" id="B980C8C4-44B6-EE1E-41EB-CBECCABA6D2E">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:54 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<delegate>EC3B125E-48E0-B5F0-C9E9-5645F2CFF489</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A1F0A08-F014-0B75-32DF-6E5367983D8C" referredColumn="EC3B125E-48E0-B5F0-C9E9-5645F2CFF489"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="54D87FB7-CF5C-7EB4-B3EE-F017243DE996" name="USER_ROUTE_PK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:22 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="24C7965A-3CE0-D8CF-7DBD-815047A7291A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0BB59A89-1121-4257-5416-8F8469891227" name="USER_ROUTE_ROUTE_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:49 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3788FE0C-5E79-17D2-B823-C16310F2EB46"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FCE87FC8-20FE-6C06-E215-6E6FF434D3AB" name="USER_ROUTE_USER_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-24 21:44:54 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B980C8C4-44B6-EE1E-41EB-CBECCABA6D2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

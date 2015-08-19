@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="232EA0CC-717C-1975-81E3-C2C90DCC8B8F" name="AGENT_DOWNLOAD">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-25 22:14:55 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="58FB1999-7C7F-655A-CD50-4336F112EC5F">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-25 22:16:12 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HOST_ADDRESS" id="FA4BDFC8-71ED-D000-FD8B-BF8D6674A94C">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-25 22:16:12 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_ID" id="C7A02BA9-2DC3-416D-258F-C0285CB4E470">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-25 22:16:37 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<delegate>EC3B125E-48E0-B5F0-C9E9-5645F2CFF489</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CEE055DD-3D59-61B3-CB89-353D9E21F4B5" referredColumn="EC3B125E-48E0-B5F0-C9E9-5645F2CFF489"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="645BD614-D23B-DB76-E1E0-8887FA1B0196" name="AGENT_DOWNLOAD_USER_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-05-25 22:16:37 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C7A02BA9-2DC3-416D-258F-C0285CB4E470"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

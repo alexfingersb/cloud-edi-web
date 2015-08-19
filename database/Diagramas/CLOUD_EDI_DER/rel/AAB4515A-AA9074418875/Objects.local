@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="232EA0CC-717C-1975-81E3-C2C90DCC8B8F" name="AGENT_DOWNLOAD" seqName="seg_0"/>
+   <object objectType="Table" objectID="288EE1BB-5DB9-DDE2-5703-8553F8F9FB05" name="ROUTE_URI" seqName="seg_0"/>
+   <object objectType="Table" objectID="494B38A0-EFAC-4B48-04E1-7C79928BC68D" name="MESSAGE_LOG" seqName="seg_0"/>
+   <object objectType="Table" objectID="6FAC9F78-00B8-1BB2-F408-5EE6B48E0CEF" name="ROUTE_FROM" seqName="seg_0"/>
+   <object objectType="Table" objectID="A125A40A-566F-4195-C723-02E1D969DB14" name="USER_ROUTE" seqName="seg_0"/>
+   <object objectType="Table" objectID="E87B4787-7C9D-78CC-F53B-9CD6FCA5D7CA" name="USER" seqName="seg_0"/>
+   <object objectType="Table" objectID="E95476A8-7440-8ADD-D0C0-7CE984A64DF4" name="ROUTE_TO" seqName="seg_0"/>
+   <object objectType="Table" objectID="F7480305-CDF3-9100-2B43-B2316477B106" name="ROUTE" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="1C703088-F916-9D76-54EA-0C1A9F9F9D46" name="MESSAGE_LOG_ROUTE_TO_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="288F6371-3D6E-91ED-FBB3-6D467A6F24E9" name="ROUTE_FROM_ROUTE_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="597D9F37-29E7-F3A5-1DB6-DDA9E484F1F3" name="ROUTE_TO_ROUTE_URI_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="5A1F0A08-F014-0B75-32DF-6E5367983D8C" name="USER_ROUTE_USER_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="6F4E7189-BB36-4E8D-8AB5-68E5431E2524" name="ROUTE_TO_ROUTE_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="B937DEDB-958A-C2AC-25A6-4898FCCF3D85" name="MESSAGE_LOG_ROUTE_FROM_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="CEE055DD-3D59-61B3-CB89-353D9E21F4B5" name="AGENT_DOWNLOAD_USER_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="DC635BAC-0F44-E1E2-6B76-4859C086B2C5" name="USER_ROUTE_ROUTE_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="FF306A78-2771-C28A-6B01-C9338FB49F2B" name="ROUTE_FROM_ROUTE_URI_FK" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>
