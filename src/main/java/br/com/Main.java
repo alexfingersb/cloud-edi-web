@@ -1,6 +1,6 @@
 package br.com;
 
-import br.com.it3.model.beans.Profile;
+import br.com.it3.model.enums.Profile;
 
 public class Main {
 	

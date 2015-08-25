@@ -18,7 +18,7 @@
 						data-i18n="actions.buttonNewUser" data-action="new">
 					</a>
 				</div>
-				<table class="table table-hover">
+				<table id="userTable" class="table table-hover">
 					<tr>
 						<th data-i18n="user.name"></th>
 						<th data-i18n="user.email"></th>
@@ -26,62 +26,7 @@
 						<th data-i18n="user.profile"></th>
 						<th data-i18n="actions.title" class="text-center"></th>
 					</tr>
-					<tr>
-						<td>Alexandre Finger Sobrinho</td>
-						<td>alex.fingersb@gmail.com</td>
-						<td>alexfingersb</td>
-						<td>Admin</td>
-						<td>
-							<a href="#">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
-							</a>
-							<a href="#">
-								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td>Vanessa Paes Santos</td>
-						<td>vanessarspaes@gmail.com</td>
-						<td>vanessars</td>
-						<td>Usuário</td>
-						<td>
-							<a href="#">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
-							</a>
-							<a href="#">
-								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td>Steve Jobs</td>
-						<td>jobs@apple.com</td>
-						<td>jobs</td>
-						<td>Usuário</td>
-						<td>
-							<a href="#">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
-							</a>
-							<a href="#">
-								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td>Bill Gates</td>
-						<td>gates@windows.com.br</td>
-						<td>bill</td>
-						<td>Usuário</td>
-						<td>
-							<a href="#" data-action="edit">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-i18n="actions.edit"></span>
-							</a>
-							<a href="#" data-action="remove" data-id="1">
-								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true" data-i18n="actions.remove"></span>
-							</a>
-						</td>
-					</tr>
+					
 				</table>
 			</div>
 		</div>
@@ -97,6 +42,8 @@
 				} if ($(this).attr("data-action") === "remove") {
 					//alert($(this).attr("data-id"))
 					removeUser($(this).attr("data-id"))
+				} if ($(this).attr("data-action") === "list") {
+					listUsers();
 				}
 			});
 		});

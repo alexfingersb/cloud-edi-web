@@ -1,9 +1,7 @@
-package br.com.it3.ws.sessions;
+package br.com.it3.controller.ws.sessions;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,15 +11,17 @@ import javax.json.JsonObject;
 import javax.json.spi.JsonProvider;
 import javax.websocket.Session;
 
-import br.com.it3.model.beans.User;
+import br.com.it3.model.dao.impl.UserManager;
+import br.com.it3.model.entities.User;
 
 
 @ApplicationScoped
 public class UserSessionHandler {
-	private int userId = 0;
+//	private int userId = 0;
 	private final Set<Session> sessions = new HashSet<>();
 	private final Set<User> users = new HashSet<User>();
 	private Logger logger = Logger.getLogger(this.getClass().getName());
+	private UserManager userDao = new UserManager();
 	
 	public void addSession(Session session) {
 		if (sessions.add(session)) {
@@ -36,21 +36,24 @@ public class UserSessionHandler {
 	}
 
 	public void removeSession(Session session) {
-		// TODO Auto-generated method stub
 		if (sessions.remove(session)) {
 			logger.info(String.format("/user session %s closed",session));
 		}
 	}
 
-	public List<User> getUsers() {
-		return new ArrayList<>();
+	public void getUsers(Session session) {
+		for (User user : userDao.findAll()) {
+			JsonObject addMessage = createListMessage(user);
+            sendToSession(session, addMessage);
+		}
 	}
 
 	public void addUser(User user) {
 		logger.info("/user add user on session handler");
-		user.setId(userId);
-        users.add(user);
-        userId++;
+//		user.setId(userId);
+//        users.add(user);
+//        userId++;
+		
         JsonObject addMessage = createAddMessage(user);
         sendToAllConnectedSessions(addMessage);
 	}
@@ -69,18 +72,28 @@ public class UserSessionHandler {
     }
 
 	private User getUserById(int id) {
-        for (User user : users) {
-            if (user.getId() == id) {
-                return user;
-            }
-        }
-        return null;
+		return userDao.findById(id);
+		
+//        for (User user : users) {
+//            if (user.getId() == id) {
+//                return user;
+//            }
+//        }
+//        return null;
     }
 
-    private JsonObject createAddMessage(User user) {
-        JsonProvider provider = JsonProvider.provider();
-        JsonObject addMessage = buildUserProvider(user, provider, "add");
-        return addMessage;
+	private JsonObject createMessage(User user, String action) {
+		JsonProvider provider = JsonProvider.provider();
+		JsonObject addMessage = buildUserProvider(user, provider, action);
+		return addMessage;
+	}
+
+	private JsonObject createAddMessage(User user) {
+		return createMessage(user, "add");
+	}
+
+	private JsonObject createListMessage(User user) {
+        return createMessage(user, "list");
     }
 
 	private JsonObject buildUserProvider(User user, JsonProvider provider, String action) {

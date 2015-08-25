@@ -1,11 +1,30 @@
-package br.com.it3.model.beans;
+package br.com.it3.model.entities;
 
-public class User {
-	
-	private Integer id;
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+
+import br.com.it3.model.enums.Profile;
+
+@Entity
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@SequenceGenerator(name = "USER_ID_GENERATOR", sequenceName = "SEQ_USER_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ID_GENERATOR")
+	private long id;
+
 	private String name;
 	private String email;
-	private String login;
+	private String username;
 	private String password;
 	private Profile profile;
 	private String status;
@@ -27,11 +46,11 @@ public class User {
 	}
 
 	public String getLogin() {
-		return login;
+		return username;
 	}
 
 	public void setLogin(String login) {
-		this.login = login;
+		this.username = login;
 	}
 
 	public String getPassword() {
@@ -50,11 +69,11 @@ public class User {
 		this.profile = profile;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

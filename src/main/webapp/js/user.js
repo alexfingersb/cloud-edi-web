@@ -24,15 +24,30 @@ function onMessage(event) {
             statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" OnClick=toggleDevice(" + device.id + ")>Turn on</a>)";
         }
     }
+    if (user.action === "list") {
+    	parseJsonToTable(user);
+    }
 }
 
-function addUser(name, email, profile, login, password, status) {
+function parseJsonToTable(user) {
+	var table = $("#userTable").find('tbody');
+	console.log('parseJsonToTable', user);
+	var row = $('<tr></tr>');
+	row.append('<td>' + user.name  	  + '</td>');
+	row.append('<td>' + user.email    + '</td');
+	row.append('<td>' + user.username +'</td>');
+	row.append('<td>' + user.profile  +'</td>');
+	row.append('<td>Editar, Excluir</td>');
+	table.append(row);
+}
+
+function addUser(name, email, profile, username, password, status) {
     var UserAction = {
         action: "add",
         name: name,
         email: email,
         profile: profile,
-        login: login,
+        login: username,
         password: password,
         status: status
     };
@@ -40,10 +55,17 @@ function addUser(name, email, profile, login, password, status) {
 }
 
 function removeUser(element) {
-    var id = element;
+	var id = element;
+	var UserAction = {
+			action: "remove",
+			id: id
+	};
+	socket.send(JSON.stringify(UserAction));
+}
+
+function listUsers() {
     var UserAction = {
-        action: "remove",
-        id: id
+        action: "list"
     };
     socket.send(JSON.stringify(UserAction));
 }
@@ -71,14 +93,15 @@ function formSubmit() {
     var name = form.elements["inputName"].value;
     var email = form.elements["inputEmail"].value;
     var profile = form.elements["inputProfile"].value;
-    var login = form.elements["inputLogin"].value;
+    var username = form.elements["inputLogin"].value;
     var password = form.elements["inputPassword"].value;
+    var status = "on";
     //hideForm();
     //document.getElementById("userForm").reset();
-    var status = "on";
-    addUser(name, email, profile, login, password, status);
+    addUser(name, email, profile, username, password, status);
 }
 
 function init() {
     //hideForm();
+	
 }

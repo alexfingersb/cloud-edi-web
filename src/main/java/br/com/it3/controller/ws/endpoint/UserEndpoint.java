@@ -1,6 +1,7 @@
-package br.com.it3.ws.endpoint;
+package br.com.it3.controller.ws.endpoint;
 
 import java.io.StringReader;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,9 +17,9 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import br.com.it3.model.beans.Profile;
-import br.com.it3.model.beans.User;
-import br.com.it3.ws.sessions.UserSessionHandler;
+import br.com.it3.controller.ws.sessions.UserSessionHandler;
+import br.com.it3.model.entities.User;
+import br.com.it3.model.enums.Profile;
 
 @ApplicationScoped
 @ServerEndpoint("/user")
@@ -66,6 +67,9 @@ public class UserEndpoint {
                 User user = formUser(jsonMessage);
                 sessionHandler.updateUser(user);
                 logger.info("user atualizado " + user.getName());
+            }
+            if ("list".equals(jsonMessage.getString("action"))) {
+            	sessionHandler.getUsers(session);
             }
         }
 	}
