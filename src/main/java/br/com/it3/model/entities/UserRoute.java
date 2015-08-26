@@ -20,7 +20,7 @@ public class UserRoute implements Serializable {
 	private long id;
 
 	@Column(name="USER_ID")
-	private String userId;
+	private long userId;
 
 	//bi-directional many-to-one association to Route
 	@ManyToOne
@@ -37,11 +37,11 @@ public class UserRoute implements Serializable {
 		this.id = id;
 	}
 
-	public String getUserId() {
+	public long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

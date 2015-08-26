@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/app.css" >
 <link rel="stylesheet" href="css/bootstrap-custom.css">
+<link rel="stylesheet" href="css/custom-theme/jquery-ui-1.10.0.custom.css">
 
 <link rel="shortcut icon" href="img/logo.ico">
 
@@ -21,6 +22,7 @@
 		}
 	</script>
 	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/i18next-1.10.1.min.js"></script>
 	<script src="js/user.js"></script>
@@ -107,13 +109,10 @@
 	</div>
 
 	<div id="content" class="container-custom">
-		<button onclick="sock.send('hey duke')"
-			class="glyphicon glyphicon-search btn btn-primary">send</button>
-		
-		
-				
 	</div>
-	
+	<div id="dialog-confirm" data-i18n="[title]dialog.title;dialog.confirm" style="display:none;" >
+	  	
+	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('a').click(function(e) {
@@ -133,8 +132,8 @@
 			 
 			function(translation) {
 			  $('[data-i18n]').i18n();
-			  //var appName = translation('app.name');
-			});
+			}
+		);
 		
 		$('.flags').on('click', function(e) {
 			e.preventDefault();

@@ -17,9 +17,8 @@ import br.com.it3.model.entities.User;
 
 @ApplicationScoped
 public class UserSessionHandler {
-//	private int userId = 0;
 	private final Set<Session> sessions = new HashSet<>();
-	private final Set<User> users = new HashSet<User>();
+//	private final Set<User> users = new HashSet<User>();
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	private UserManager userDao = new UserManager();
 	
@@ -29,10 +28,10 @@ public class UserSessionHandler {
 		} else {
 			logger.info("/user Sessao " + session.getId() + " ja existe");
 		}
-        for (User user : users) {
-            JsonObject addMessage = createAddMessage(user);
-            sendToSession(session, addMessage);
-        }
+//        for (User user : users) {
+//            JsonObject addMessage = createAddMessage(user);
+//            sendToSession(session, addMessage);
+//        }
 	}
 
 	public void removeSession(Session session) {
@@ -48,20 +47,17 @@ public class UserSessionHandler {
 		}
 	}
 
-	public void addUser(User user) {
-		logger.info("/user add user on session handler");
-//		user.setId(userId);
-//        users.add(user);
-//        userId++;
-		
+	public void addUser(User user, Session mysession) {
+		userDao.persist(user);
         JsonObject addMessage = createAddMessage(user);
-        sendToAllConnectedSessions(addMessage);
+        sendToOtherConnectedSessions(addMessage, mysession);
 	}
 
 	public void removeUser(int id) {
         User user = getUserById(id);
         if (user != null) {
-            sessions.remove(user);
+        	userDao.remove(user);
+//            sessions.remove(user);
             JsonProvider provider = JsonProvider.provider();
             JsonObject removeMessage = provider.createObjectBuilder()
                     .add("action", "remove")
@@ -73,13 +69,6 @@ public class UserSessionHandler {
 
 	private User getUserById(int id) {
 		return userDao.findById(id);
-		
-//        for (User user : users) {
-//            if (user.getId() == id) {
-//                return user;
-//            }
-//        }
-//        return null;
     }
 
 	private JsonObject createMessage(User user, String action) {
@@ -101,37 +90,39 @@ public class UserSessionHandler {
                 .add("action", action)
                 .add("id", user.getId())
                 .add("name", user.getName())
-                .add("perfil", user.getProfile().toString())
+                .add("profile", user.getProfile().toString())
                 .add("status", user.getStatus())
-                .add("login", user.getLogin())
+                .add("username", user.getUsername())
                 .add("password", user.getPassword())
                 .add("email", user.getEmail())
                 .build();
 	}
     
-    public void updateUser(User user) {
+    public void updateUser(User user, Session mysession) {
         JsonProvider provider = JsonProvider.provider();
         if (user != null) {
-//            if ("On".equals(user.getStatus())) {
-//                user.setStatus("Off");
-//            } else {
-//                user.setStatus("On");
-//            }
+        	userDao.persist(user);
             JsonObject updateUser = buildUserProvider(user, provider, "udpate");
-            sendToAllConnectedSessions(updateUser);
+            sendToOtherConnectedSessions(updateUser, mysession);
         }
     }
 
     private void sendToAllConnectedSessions(JsonObject message) {
+    	for (Session session : sessions) {
+    		sendToSession(session, message);
+    	}
+    }
+
+    private void sendToOtherConnectedSessions(JsonObject message, Session mysession) {
         for (Session session : sessions) {
-        	logger.info("/user Send to message to session " + session.getId());
-            sendToSession(session, message);
+        	logger.info("Send message to all sessions " + session.getId());
+        	if (session.getId() == mysession.getId()) continue;
+            	sendToSession(session, message);
         }
     }
 
     private void sendToSession(Session session, JsonObject message) {
         try {
-        	logger.info("/user Send message " + message);
             session.getBasicRemote().sendText(message.toString());
         } catch (IOException ex) {
             sessions.remove(session);

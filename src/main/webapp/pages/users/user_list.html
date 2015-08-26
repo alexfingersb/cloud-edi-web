@@ -34,13 +34,13 @@
 	<script lang="javascript">
 		$(document).ready(function() {
 			$('a').click(function(e) {
+				console.log("action=",$(this).attr("data-action"));
 				e.preventDefault();
 				if ($(this).attr("data-action") === "new") {
 					$('#content').load($(this).attr('href'));
 				} if ($(this).attr("data-action") === "edit") {
 					alert("Alterar dados do usuario");
 				} if ($(this).attr("data-action") === "remove") {
-					//alert($(this).attr("data-id"))
 					removeUser($(this).attr("data-id"))
 				} if ($(this).attr("data-action") === "list") {
 					listUsers();

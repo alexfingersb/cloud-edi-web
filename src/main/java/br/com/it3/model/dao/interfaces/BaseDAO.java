@@ -5,5 +5,5 @@ public interface BaseDAO<E> {
 
 	void remove(E entity);
 
-	E findById(Integer id);
+	E findById(long id);
 }

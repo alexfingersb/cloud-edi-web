@@ -54,7 +54,7 @@ public class UserEndpoint {
             if ("add".equals(jsonMessage.getString("action"))) {
                 User user = formUser(jsonMessage);
                 logger.info("adiciona usuario na sessao " + user.getName());
-                sessionHandler.addUser(user);
+                sessionHandler.addUser(user, session);
             }
 
             if ("remove".equals(jsonMessage.getString("action"))) {
@@ -65,7 +65,7 @@ public class UserEndpoint {
 
             if ("updte".equals(jsonMessage.getString("action"))) {
                 User user = formUser(jsonMessage);
-                sessionHandler.updateUser(user);
+                sessionHandler.updateUser(user, session);
                 logger.info("user atualizado " + user.getName());
             }
             if ("list".equals(jsonMessage.getString("action"))) {
@@ -79,7 +79,7 @@ public class UserEndpoint {
         user.setName(jsonMessage.getString("name"));
         user.setEmail(jsonMessage.getString("email"));
         user.setProfile(Profile.valueOf(jsonMessage.getString("profile"))); //TODO Validar constante Perfil
-        user.setLogin(jsonMessage.getString("login"));
+        user.setUsername(jsonMessage.getString("username"));
         user.setPassword(jsonMessage.getString("password")); //TODO Criprografar senha com MD5
         user.setStatus(jsonMessage.getString("status"));
 		return user;

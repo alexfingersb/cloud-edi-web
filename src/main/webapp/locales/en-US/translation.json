@@ -44,6 +44,11 @@
   	"cancel": "Cancel",
   	"buttonSeeAll": "See All",
   	"buttonNewUser": "New User"
+  },
+  "dialog": {
+  	"confirm": "This item will be permanently deleted and cannot be recovered. Are you sure?",
+  	"title": "Delete this item?",
+  	"yes": "Yes"
   }
   
 }

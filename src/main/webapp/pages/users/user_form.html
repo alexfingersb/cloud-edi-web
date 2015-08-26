@@ -12,6 +12,12 @@
 	
 		<form name="userForm" id="userForm" class="form-horizontal" >
 			<div class="form-group">
+				<div class="col-sm-9">
+					<input type="hidden" class="form-control" id="inputId" name="inputId">
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label for="inputName" class="col-sm-3 control-label" data-i18n="user.name"></label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="inputName" name="inputName">
@@ -74,11 +80,16 @@
 					$('#content').load($(this).attr('href'));
 				}
 			});
+			
+			$('#inputName').focus();
+			
 		});
+		
 		$('[data-i18n]').i18n();
 		
-		$("#save").click(function(e) {
+		$('#save').click(function(e) {
 			formSubmit();
+			$('#content').load('pages/users/user_list.html');
 		})
 		
 	</script>

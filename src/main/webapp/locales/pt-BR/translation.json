@@ -44,5 +44,10 @@
   	"cancel": "Cancelar",
   	"buttonSeeAll": "Ver todos",
   	"buttonNewUser": "Novo Usuário"
+  },
+  "dialog": {
+  	"confirm": "Este item será removido permanentemente e não poderá ser recuperado. Deseja prosseguir?",
+  	"title": "Excluir este item?",
+  	"yes": "Sim"
   }
 }

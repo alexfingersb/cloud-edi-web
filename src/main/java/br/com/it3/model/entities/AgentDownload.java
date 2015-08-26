@@ -23,7 +23,7 @@ public class AgentDownload implements Serializable {
 	private String hostAddress;
 
 	@Column(name="USER_ID")
-	private String userId;
+	private long userId;
 
 	public AgentDownload() {
 	}
@@ -44,11 +44,11 @@ public class AgentDownload implements Serializable {
 		this.hostAddress = hostAddress;
 	}
 
-	public String getUserId() {
+	public long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

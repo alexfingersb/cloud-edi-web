@@ -8,12 +8,11 @@ socket.onmessage = onMessage;
 function onMessage(event) {
     var user = JSON.parse(event.data);
     if (user.action === "add") {
-    	console.log("message received from server:",user.name);
-        //prinUserElement(user);
+    	parseJsonToTable(user);
     }
     if (user.action === "remove") {
-        document.getElementById(user.id).remove();
-        //device.parentNode.removeChild(device);
+        var row = document.getElementById(user.id);
+        row.parentNode.removeChild(row);
     }
     if (user.action === "update") {
         var node = document.getElementById(user.id);
@@ -26,28 +25,35 @@ function onMessage(event) {
     }
     if (user.action === "list") {
     	parseJsonToTable(user);
+    	$('[data-i18n]').i18n();
     }
 }
 
 function parseJsonToTable(user) {
 	var table = $("#userTable").find('tbody');
-	console.log('parseJsonToTable', user);
 	var row = $('<tr></tr>');
+	row.attr('id', user.id);
 	row.append('<td>' + user.name  	  + '</td>');
 	row.append('<td>' + user.email    + '</td');
 	row.append('<td>' + user.username +'</td>');
 	row.append('<td>' + user.profile  +'</td>');
-	row.append('<td>Editar, Excluir</td>');
+	var action = '<a href="#"> <span data-id=' + user.id + ' aria-hidden="true" data-action="edit"   data-i18n="actions.edit" class="glyphicon glyphicon-pencil"></span></a>'; 
+	action +=    '<a href="#" onclick="removeUser(' + user.id + ');"> <span data-id=' + user.id + ' aria-hidden="true" data-action="remove" data-i18n="actions.remove" class="glyphicon glyphicon-remove-sign"></span></a>';
+	row.append('<td>' + action + '<td>');
 	table.append(row);
 }
 
-function addUser(name, email, profile, username, password, status) {
-    var UserAction = {
-        action: "add",
+function submit(id, name, email, profile, username, password, status) {
+    var action = "add";
+    if (id)	action = "udate";
+    
+	var UserAction = {
+        action: action,
+        id: id,
         name: name,
         email: email,
         profile: profile,
-        login: username,
+        username: username,
         password: password,
         status: status
     };
@@ -55,12 +61,25 @@ function addUser(name, email, profile, username, password, status) {
 }
 
 function removeUser(element) {
-	var id = element;
-	var UserAction = {
-			action: "remove",
-			id: id
-	};
-	socket.send(JSON.stringify(UserAction));
+	$( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height:180,
+      modal: true,
+      buttons: {
+        Yes: function() {
+        	var id = element;
+        	var UserAction = {
+        			action: "remove",
+        			id: id
+        	};
+        	socket.send(JSON.stringify(UserAction));
+        	$( this ).dialog( "close" );
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
 }
 
 function listUsers() {
@@ -79,26 +98,17 @@ function toggleDevice(element) {
     socket.send(JSON.stringify(DeviceAction));
 }
 
-function printUserElement(user) {
-    var content = document.getElementById("content");
-    console.log("usuario");
-    alert("Usuario " + user.name);
-    
-    
-}
-
 function formSubmit() {
-	console.log("form submit");
-    var form = document.getElementById("userForm");
-    var name = form.elements["inputName"].value;
-    var email = form.elements["inputEmail"].value;
-    var profile = form.elements["inputProfile"].value;
-    var username = form.elements["inputLogin"].value;
-    var password = form.elements["inputPassword"].value;
+    var form 		= document.getElementById("userForm");
+    var id 			= form.elements["inputId"].value;
+    var name 		= form.elements["inputName"].value;
+    var email 		= form.elements["inputEmail"].value;
+    var profile 	= form.elements["inputProfile"].value;
+    var username 	= form.elements["inputLogin"].value;
+    var password 	= form.elements["inputPassword"].value;
     var status = "on";
-    //hideForm();
-    //document.getElementById("userForm").reset();
-    addUser(name, email, profile, username, password, status);
+   	submit(id, name, email, profile, username, password, status);
+   	listUsers();
 }
 
 function init() {

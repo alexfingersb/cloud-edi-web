@@ -3,16 +3,20 @@ package br.com.it3.model.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import br.com.it3.model.enums.Profile;
 
 @Entity
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+@Table(name="`USER`")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,10 +27,16 @@ public class User implements Serializable {
 	private long id;
 
 	private String name;
+	
 	private String email;
+	
 	private String username;
+	
 	private String password;
+	
+	@Enumerated(EnumType.STRING)
 	private Profile profile;
+
 	private String status;
 
 	public String getName() {
@@ -45,11 +55,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getLogin() {
+	public String getUsername() {
 		return username;
 	}
 
-	public void setLogin(String login) {
+	public void setUsername(String login) {
 		this.username = login;
 	}
 
