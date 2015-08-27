@@ -1,7 +1,6 @@
 package br.com.it3.controller.ws.endpoint;
 
 import java.io.StringReader;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,13 +30,13 @@ public class UserEndpoint {
 
 	@OnOpen
 	public void open(Session session) {
-		logger.info("/user open connection with sesson id " + session.getId());
+		logger.info("[user] open connection with sesson id " + session.getId());
 		sessionHandler.addSession(session);
 	}
 	
 	@OnClose
 	public void close(Session session) {
-		logger.info(String.format("Session %s closed", session.getId()));
+		logger.info(String.format("[user] Session %s closed", session.getId()));
 		sessionHandler.removeSession(session);
 	}
 	
@@ -50,38 +49,42 @@ public class UserEndpoint {
 	public void onMessage(String message, Session session) {
 		try (JsonReader reader = Json.createReader(new StringReader(message))) {
             JsonObject jsonMessage = reader.readObject();
-
-            if ("add".equals(jsonMessage.getString("action"))) {
+            String action = jsonMessage.getString("action");
+            
+            logger.info("action="+action);
+            
+            if ("add".equals(action)) {
                 User user = formUser(jsonMessage);
-                logger.info("adiciona usuario na sessao " + user.getName());
                 sessionHandler.addUser(user, session);
-            }
-
-            if ("remove".equals(jsonMessage.getString("action"))) {
+            } else if ("remove".equals(action)) {
                 int id = (int) jsonMessage.getInt("id");
                 sessionHandler.removeUser(id);
-                logger.info("usuario removido " + id);
-            }
-
-            if ("updte".equals(jsonMessage.getString("action"))) {
+            } else if ("update".equals(action)) {
                 User user = formUser(jsonMessage);
                 sessionHandler.updateUser(user, session);
-                logger.info("user atualizado " + user.getName());
-            }
-            if ("list".equals(jsonMessage.getString("action"))) {
+            } else if ("list".equals(action)) {
             	sessionHandler.getUsers(session);
+            } else if ("edit".equals(action)) {
+            	int id = (int) jsonMessage.getInt("id");
+            	sessionHandler.editUser(id, session);
             }
         }
 	}
 	
 	private User formUser(JsonObject jsonMessage) {
 		User user = new User();
+		user.setStatus(jsonMessage.getString("status"));
         user.setName(jsonMessage.getString("name"));
         user.setEmail(jsonMessage.getString("email"));
-        user.setProfile(Profile.valueOf(jsonMessage.getString("profile"))); //TODO Validar constante Perfil
+        user.setProfile(Profile.valueOf(jsonMessage.getString("profile")));
         user.setUsername(jsonMessage.getString("username"));
-        user.setPassword(jsonMessage.getString("password")); //TODO Criprografar senha com MD5
-        user.setStatus(jsonMessage.getString("status"));
+
+        if ("add".equals(jsonMessage.getString("action"))) {
+	        user.setPassword(jsonMessage.getString("password")); //TODO Criprografar senha com MD5
+        } else {
+        	user.setId(Long.valueOf(jsonMessage.getString("id")));
+        }
+        logger.info(jsonMessage.toString());
 		return user;
 	}
 	

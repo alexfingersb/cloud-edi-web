@@ -21,11 +21,36 @@ public class UserManager extends JpaBaseDAO<User> implements UserDAO<User> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
-		this.em = emf.createEntityManager();
+		em = emf.createEntityManager();
 		logger.info("find all users");
 		Query query = em.createNamedQuery("User.findAll");
 		List<User> users = (List<User>) query.getResultList();
 		em.close();
 		return users;
+	}
+
+	@Override
+	public User update(User user) {
+		if (em == null)
+			em = emf.createEntityManager();
+		
+		User entity = em.find(User.class, user.getId());
+		entity.setId(user.getId());
+		entity.setName(user.getName());
+		entity.setEmail(user.getEmail());
+		entity.setStatus(user.getStatus());
+		entity.setProfile(user.getProfile());
+		entity.setUsername(user.getUsername());
+		
+		em.getTransaction().begin();
+		try {
+			logger.info("Update user " + entity.getName());
+			em.merge(entity);
+			em.getTransaction().commit();
+			em.close();
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		}
+		return entity;
 	}
 }

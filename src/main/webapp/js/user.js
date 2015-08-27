@@ -27,18 +27,33 @@ function onMessage(event) {
     	parseJsonToTable(user);
     	$('[data-i18n]').i18n();
     }
+    if (user.action === "edit") {
+    	console.log("Receive message: " + event.data);
+    	parseJsonToForm(user);
+    }
+}
+
+function parseJsonToForm(user) {
+	
+	$('#inputId').val(user.id);
+	$('#inputName').val(user.name);
+	$('#inputEmail').val(user.email);
+	$('#inputUsername').val(user.username);
+	console.log('profile=', user.profile);
+	$('#inputProfile').selectpicker('val',user.profile);
+	$('#inputStatus').val(user.status);
 }
 
 function parseJsonToTable(user) {
-	var table = $("#userTable").find('tbody');
+	var table = $('#userTable').find('tbody');
 	var row = $('<tr></tr>');
 	row.attr('id', user.id);
 	row.append('<td>' + user.name  	  + '</td>');
 	row.append('<td>' + user.email    + '</td');
 	row.append('<td>' + user.username +'</td>');
 	row.append('<td>' + user.profile  +'</td>');
-	var action = '<a href="#"> <span data-id=' + user.id + ' aria-hidden="true" data-action="edit"   data-i18n="actions.edit" class="glyphicon glyphicon-pencil"></span></a>'; 
-	action +=    '<a href="#" onclick="removeUser(' + user.id + ');"> <span data-id=' + user.id + ' aria-hidden="true" data-action="remove" data-i18n="actions.remove" class="glyphicon glyphicon-remove-sign"></span></a>';
+	var action = '<a href="#" onclick="editUser(' + user.id + ');"> <span  aria-hidden="true" data-i18n="actions.edit" class="glyphicon glyphicon-pencil"></span></a>'; 
+	action +=    '<a href="#" onclick="removeUser(' + user.id + ');"> <span aria-hidden="true" data-i18n="actions.remove" class="glyphicon glyphicon-remove-sign"></span></a>';
 	row.append('<td>' + action + '<td>');
 	table.append(row);
 }
@@ -46,7 +61,7 @@ function parseJsonToTable(user) {
 function submit(id, name, email, profile, username, password, status) {
     var action = "add";
     if (id)	{
-    	action = "udate";
+    	action = "update";
     }
     
 	var UserAction = {
@@ -62,14 +77,13 @@ function submit(id, name, email, profile, username, password, status) {
     socket.send(JSON.stringify(UserAction));
 }
 
-function removeUser(element) {
-	$( "#dialog-confirm" ).dialog({
+function removeUser(id) {
+	$( '#dialog-confirm').dialog({
       resizable: false,
       height:180,
       modal: true,
       buttons: {
         Yes: function() {
-        	var id = element;
         	var UserAction = {
         			action: "remove",
         			id: id
@@ -82,6 +96,15 @@ function removeUser(element) {
         }
       }
     });
+}
+
+function editUser(id) {
+	var UserAction = {
+			action: "edit",
+			id: id
+	};
+	socket.send(JSON.stringify(UserAction));
+	$('#content').load('pages/users/user_form.html');
 }
 
 function listUsers() {
@@ -107,7 +130,7 @@ function formSubmit() {
     var name 		= form.elements["inputName"].value;
     var email 		= form.elements["inputEmail"].value;
     var profile 	= form.elements["inputProfile"].value;
-    var username 	= form.elements["inputLogin"].value;
+    var username 	= form.elements["inputUsername"].value;
     var password 	= form.elements["inputPassword"].value;
     var status 		= form.elements["inputStatus"].value;
    	submit(id, name, email, profile, username, password, status);

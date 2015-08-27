@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.FinderException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.JsonObject;
 import javax.json.spi.JsonProvider;
@@ -24,9 +25,9 @@ public class UserSessionHandler {
 	
 	public void addSession(Session session) {
 		if (sessions.add(session)) {
-			logger.info("/user Sessao " + session.getId() + " adicionada");
+			logger.info("[user' Sessao " + session.getId() + " adicionada");
 		} else {
-			logger.info("/user Sessao " + session.getId() + " ja existe");
+			logger.info("[user] Sessao " + session.getId() + " ja existe");
 		}
 //        for (User user : users) {
 //            JsonObject addMessage = createAddMessage(user);
@@ -36,7 +37,7 @@ public class UserSessionHandler {
 
 	public void removeSession(Session session) {
 		if (sessions.remove(session)) {
-			logger.info(String.format("/user session %s closed",session));
+			logger.info(String.format("[user] session %s closed",session));
 		}
 	}
 
@@ -67,8 +68,9 @@ public class UserSessionHandler {
         }
     }
 
-	private User getUserById(int id) {
-		return userDao.findById(id);
+	private User getUserById(long id) {
+		User user = userDao.findById(id);
+		return user;
     }
 
 	private JsonObject createMessage(User user, String action) {
@@ -101,10 +103,17 @@ public class UserSessionHandler {
     public void updateUser(User user, Session mysession) {
         JsonProvider provider = JsonProvider.provider();
         if (user != null) {
-        	userDao.persist(user);
+        	user = userDao.update(user);
             JsonObject updateUser = buildUserProvider(user, provider, "udpate");
             sendToOtherConnectedSessions(updateUser, mysession);
         }
+    }
+    
+    public void editUser(long id, Session mysession) {
+    	JsonProvider provider = JsonProvider.provider();
+    	User user = getUserById(id);
+    	JsonObject message = buildUserProvider(user, provider, "edit");
+    	sendToSession(mysession, message);
     }
 
     private void sendToAllConnectedSessions(JsonObject message) {

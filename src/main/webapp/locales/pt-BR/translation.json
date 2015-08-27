@@ -30,11 +30,12 @@
   	"newTitle": "Novo Usuário",
   	"name": "Nome",
   	"email": "E-Mail",
-  	"login": "Login",
+  	"username": "Nome de usuário",
   	"password": "Senha",
   	"passwordConfirm": "Confirmar Senha",
   	"profile": "Perfil",
-  	"systemUsers": "Usuários do Sistema"
+  	"systemUsers": "Usuários do Sistema",
+  	"status": "Ativo"
   },
   "actions": {
   	"title": "Açōes",

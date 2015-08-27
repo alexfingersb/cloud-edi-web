@@ -8,7 +8,7 @@
     "users": "Users",
     "downloads" : "Downloads",
     "about": "About",
-    "logoff": "Log off"
+    "logoff": "Logout"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -30,11 +30,12 @@
     "newTitle" : "New User",
   	"name": "Name",
   	"email": "E-Mail",
-  	"login": "Login",
+  	"username": "User name",
   	"password": "Password",
   	"passwordConfirm": "Re-enter Password",
   	"profile": "Profile",
-  	"systemUsers": "System Users"
+  	"systemUsers": "System Users",
+  	"status": "Active"
   },
   "actions": {
   	"title": "Actions",
