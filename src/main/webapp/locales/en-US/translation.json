@@ -49,6 +49,9 @@
   	"confirm": "This item will be permanently deleted and cannot be recovered. Are you sure?",
   	"title": "Delete this item?",
   	"yes": "Yes"
+  },
+  "select" : {
+  	"choose" : "Select one option"
   }
   
 }

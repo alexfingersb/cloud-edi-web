@@ -45,7 +45,9 @@ function parseJsonToTable(user) {
 
 function submit(id, name, email, profile, username, password, status) {
     var action = "add";
-    if (id)	action = "udate";
+    if (id)	{
+    	action = "udate";
+    }
     
 	var UserAction = {
         action: action,
@@ -87,6 +89,7 @@ function listUsers() {
         action: "list"
     };
     socket.send(JSON.stringify(UserAction));
+    $('#content').load('pages/users/user_list.html');
 }
 
 function toggleDevice(element) {
@@ -106,7 +109,7 @@ function formSubmit() {
     var profile 	= form.elements["inputProfile"].value;
     var username 	= form.elements["inputLogin"].value;
     var password 	= form.elements["inputPassword"].value;
-    var status = "on";
+    var status 		= form.elements["inputStatus"].value;
    	submit(id, name, email, profile, username, password, status);
    	listUsers();
 }

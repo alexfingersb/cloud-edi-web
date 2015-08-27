@@ -49,5 +49,8 @@
   	"confirm": "Este item será removido permanentemente e não poderá ser recuperado. Deseja prosseguir?",
   	"title": "Excluir este item?",
   	"yes": "Sim"
+  },
+  "select" : {
+  	"choose" : "Selecione uma opcao"
   }
 }

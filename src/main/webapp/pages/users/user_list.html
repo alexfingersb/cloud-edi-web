@@ -34,7 +34,6 @@
 	<script lang="javascript">
 		$(document).ready(function() {
 			$('a').click(function(e) {
-				console.log("action=",$(this).attr("data-action"));
 				e.preventDefault();
 				if ($(this).attr("data-action") === "new") {
 					$('#content').load($(this).attr('href'));

@@ -33,8 +33,8 @@
 			
 			<div class="form-group">
 				<label for="inputPerfil" class="col-sm-3 control-label" data-i18n="user.profile"></label>
-				<div class="col-sm-9">
-					<select class="form-control" id="inputProfile" name="inputProfile">
+				<div class="col-sm-4">
+					<select class="form-control selectpicker" id="inputProfile" name="inputProfile">
 						<option value="Administrador">Administrador</option>
 						<option value="Usuario">Usuario</option>
 					</select>
@@ -64,8 +64,8 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-sm-9">
-					<a href="pages/users/user_list.html" class="btn btn-default" data-i18n="actions.cancel"></a>
-					<button id="save" type="button" class="btn btn-default" data-i18n="actions.save"></button>
+					<button id="cancel" onclick="listUsers();" type="button" class="btn btn-default" data-i18n="actions.cancel"></button>
+					<button id="save"   onclick="formSubmit();" type="button" class="btn btn-default" data-i18n="actions.save"></button>
 				</div>
 			</div>
 		</form>
@@ -74,24 +74,10 @@
 	
 	<script lang="javascript">
 		$(document).ready(function() {
-			$('a').click(function(e) {
-				e.preventDefault();
-				if ($(this).attr("href") !== "#") {
-					$('#content').load($(this).attr('href'));
-				}
-			});
-			
 			$('#inputName').focus();
-			
+			$('#inputProfile').selectpicker();
+			$('[data-i18n]').i18n();
 		});
-		
-		$('[data-i18n]').i18n();
-		
-		$('#save').click(function(e) {
-			formSubmit();
-			$('#content').load('pages/users/user_list.html');
-		})
-		
 	</script>
 </body>
 </html>
