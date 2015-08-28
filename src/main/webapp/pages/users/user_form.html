@@ -6,84 +6,147 @@
 </head>
 <body>
 	
-	<h1 data-i18n="user.newTitle"></h1>
-	<div class="row">
-	<div class="col-md-6 col-md-offset-2">
+	<h1><small data-i18n="user.newTitle"></small></h1>
 	
-		<form name="userForm" id="userForm" class="form-horizontal" >
-			<div class="form-group">
-				<div class="col-sm-9">
-					<input type="hidden" class="form-control" id="inputId" name="inputId">
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="inputProfile" class="col-sm-3 control-label" data-i18n="user.profile"></label>
-				<div class="col-sm-4">
-					<select class="form-control selectpicker" id="inputProfile" name="inputProfile">
-						<option value="Administrador">Administrador</option>
-						<option value="Usuario">Usuario</option>
-					</select>
-				</div>
+	<span id="message-error"></span>
+	<div class="row">
+		<div class="col-md-8 col-centered">
+			<div class="panel panel-primary">
+				<!-- Default panel contents -->
+				<div class="panel-heading"></div>
+				<div class="panel-body">
+					<div class="col-md-11 col-md-offset-1">
+						<form name="userForm" id="userForm" class="form-horizontal" >
+							<div class="form-group">
+								<div class="col-sm-9">
+									<input type="hidden" class="form-control" id="inputId" name="inputId">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputProfile" class="col-sm-3 control-label"></label>
+								<div class="col-sm-4">
+									<span class="text-muted">
+										<span style="color:red;">*</span> 
+										<em data-i18n="validation.required_field_helper">
+										</em>
+									</span>
+								</div>
+							</div>
+											
+							<div class="form-group">
+								<label for="inputProfile" class="col-sm-3 control-label" data-i18n="user.profile"></label>
+								<div class="col-sm-4">
+									<select class="form-control selectpicker" id="inputProfile" name="inputProfile">
+										<option value="Administrador">Administrador</option>
+										<option value="Usuario">Usuario</option>
+									</select>
+								</div>
+								
+								<div class="col-sm-5">
+									<label for="inputStatus" class="col-sm-5 control-label" >
+							    		<input type="checkbox" id="inputStatus" name="inputStatus">
+							    		<span data-i18n="user.status"></span>
+									</label>
+						    	</div>
+							</div>
 				
-				<div class="col-sm-5">
-					<label for="inputStatus" class="col-sm-5 control-label" >
-			    		<input type="checkbox" id="inputStatus" name="inputStatus" required>
-			    		<span data-i18n="user.status"></span>
-					</label>
-		    	</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputName" class="col-sm-3 control-label" data-i18n="user.name"></label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="inputName" name="inputName" required>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="inputEmail" class="col-sm-3 control-label" data-i18n="user.email"></label>
-				<div class="col-sm-9">
-					<input type="email" class="form-control" id="inputEmail" name="inputEmail" required>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="inputUsernme" class="col-sm-3 control-label" data-i18n="user.username"></label>
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="inputUsername" name="inputUsername" required>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="inputPassword" class="col-sm-3 control-label" data-i18n="user.password"></label>
-				<div class="col-sm-9">
-					<input type="password" class="form-control" id="inputPassword" name="inputPassword" required>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputPasswordConfirm" class="col-sm-3 control-label" data-i18n="user.passwordConfirm"></label>
-				<div class="col-sm-9">
-					<input type="password" class="form-control" id="inputPasswordConfirm" name="inputPasswordConfirm" required>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="col-sm-offset-3 col-sm-9">
-					<button id="cancel" onclick="listUsers();" type="button" class="btn btn-default" data-i18n="actions.cancel"></button>
-					<button id="save"   onclick="formSubmit();" type="button" class="btn btn-default" data-i18n="actions.save"></button>
-				</div>
-			</div>
-		</form>
-	</div>
-	</div>
+							<div class="form-group">
+								<div class="col-sm-3 control-label">
+									<label for="inputName"  data-i18n="user.name"></label>
+									<span style="color:red;">*</span>
+								</div>
+								<div class="col-sm-4">
+									<input type="text" class="form-control error" id="inputName" name="inputName" class="form-control"
+										data-validation="required" data-validation-error-msg-container="#name-error">
+								</div>
+								<div class="col-sm-5">
+									<span id="name-error"></span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-3 control-label">
+									<label for="inputEmail" data-i18n="user.email"></label>
+									<span style="color:red;">*</span>
+								</div>
+								<div class="col-sm-4">
+									<input type="email" class="form-control" id="inputEmail" name="inputEmail"
+										data-validation="email" data-validation-error-msg-container="#email-error">
+								</div>
+								<div class="col-sm-5">
+									<span id="email-error"></span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-3 control-label">
+									<label for="inputUsernme" data-i18n="user.username"></label>
+									<span style="color:red;">*</span>
+								</div>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="inputUsername" name="inputUsername" 
+										data-validation="required" data-validation-error-msg-container="#username-error">
+								</div>
+								<div class="col-sm-5">
+									<span id="username-error"></span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-3 control-label">
+									<label for="inputPassword" data-i18n="user.password"></label>
+									<span style="color:red;">*</span>
+								</div>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="inputPassword" name="inputPassword"
+										data-validation="required" data-validation-error-msg-container="#password-error">
+								</div>
+								<div class="col-sm-5">
+									<span id="password-error"></span>
+								</div>
+							</div>
+				
+							<div class="form-group">
+								<div class="col-sm-3 control-label">
+									<label for="inputPasswordConfirm" data-i18n="user.passwordConfirm"></label>
+									<span style="color:red;">*</span>
+								</div>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="inputPasswordConfirm" name="inputPasswordConfirm" 
+										data-validation="required" data-validation-error-msg-container="#password-confirm-error">
+								</div>
+								<div class="col-sm-5">
+									<span id="password-confirm-error"></span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<button id="cancel" onclick="listUsers();" type="button" class="btn btn-error">
+										<span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+										<span data-i18n="actions.back"></span>
+									</button>
+									<button id="save"  onclick="validateAndSubmit(this.form);" type="button" class="btn btn-success">
+										<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+										<span data-i18n="actions.save"></span>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div> <!--panel body -->
+			</div> <!--panel primary -->
+		</div> <!--panel center -->
+	</div> <!--panel row -->
 	
 	<script lang="javascript">
 		$(document).ready(function() {
 			$('#inputName').focus();
 			$('#inputProfile').selectpicker();
-			$('[data-i18n]').i18n();
+
+			configureLocale();
+			
 		});
 	</script>
 </body>

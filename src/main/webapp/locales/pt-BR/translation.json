@@ -37,6 +37,12 @@
   	"systemUsers": "Usuários do Sistema",
   	"status": "Ativo"
   },
+  "download": {
+  	"title": "Downloads" 
+  },
+  "route": {
+  	"title": "Cadastro de Rotas"
+  },
   "actions": {
   	"title": "Açōes",
   	"edit": "Editar",
@@ -44,7 +50,8 @@
   	"save": "Salvar",
   	"cancel": "Cancelar",
   	"buttonSeeAll": "Ver todos",
-  	"buttonNewUser": "Novo Usuário"
+  	"buttonNewUser": "Novo Usuário",
+  	"back": "Voltar"
   },
   "dialog": {
   	"confirm": "Este item será removido permanentemente e não poderá ser recuperado. Deseja prosseguir?",
@@ -53,5 +60,8 @@
   },
   "select" : {
   	"choose" : "Selecione uma opcao"
+  },
+  "validation": {
+  	"required_field_helper" : "Indica campos requeridos"
   }
 }

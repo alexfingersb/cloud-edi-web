@@ -37,6 +37,12 @@
   	"systemUsers": "System Users",
   	"status": "Active"
   },
+  "download": {
+  	"title": "Downloads" 
+  },
+  "route": {
+  	"title": "Context Routes"
+  },
   "actions": {
   	"title": "Actions",
   	"edit": "Edit",
@@ -44,7 +50,8 @@
   	"save": "Save",
   	"cancel": "Cancel",
   	"buttonSeeAll": "See All",
-  	"buttonNewUser": "New User"
+  	"buttonNewUser": "New User",
+  	"back": "Back"
   },
   "dialog": {
   	"confirm": "This item will be permanently deleted and cannot be recovered. Are you sure?",
@@ -53,6 +60,9 @@
   },
   "select" : {
   	"choose" : "Select one option"
+  },
+  "validation": {
+  	"required_field_helper" : "Indicates required field"
   }
   
 }

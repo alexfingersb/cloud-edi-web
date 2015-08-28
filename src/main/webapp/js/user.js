@@ -34,14 +34,18 @@ function onMessage(event) {
 }
 
 function parseJsonToForm(user) {
-	
 	$('#inputId').val(user.id);
 	$('#inputName').val(user.name);
 	$('#inputEmail').val(user.email);
 	$('#inputUsername').val(user.username);
-	console.log('profile=', user.profile);
 	$('#inputProfile').selectpicker('val',user.profile);
 	$('#inputStatus').val(user.status);
+	var checked = (user.status === 'on' ?  true : false);
+	$('#inputStatus').prop('checked', checked);
+	
+	var editmode = (user.id !== "");
+	$('#inputPassword').prop('disabled',editmode);
+	$('#inputPasswordConfirm').prop('disabled',editmode);
 }
 
 function parseJsonToTable(user) {
@@ -52,9 +56,9 @@ function parseJsonToTable(user) {
 	row.append('<td>' + user.email    + '</td');
 	row.append('<td>' + user.username +'</td>');
 	row.append('<td>' + user.profile  +'</td>');
-	var action = '<a href="#" onclick="editUser(' + user.id + ');"> <span  aria-hidden="true" data-i18n="actions.edit" class="glyphicon glyphicon-pencil"></span></a>'; 
-	action +=    '<a href="#" onclick="removeUser(' + user.id + ');"> <span aria-hidden="true" data-i18n="actions.remove" class="glyphicon glyphicon-remove-sign"></span></a>';
-	row.append('<td>' + action + '<td>');
+	var action = '<a href="#" onclick="editUser(' + user.id + ');"> <span  aria-hidden="true" data-i18n="actions.edit" class="glyphicon glyphicon-edit"></span></a>'; 
+	action +=    '<a href="#" onclick="removeUser(' + user.id + ');"> <span aria-hidden="true" data-i18n="actions.remove" class="glyphicon glyphicon-remove"></span></a>';
+	row.append('<td class="text-center">' + action + '<td>');
 	table.append(row);
 }
 
@@ -125,19 +129,28 @@ function toggleDevice(element) {
 }
 
 function formSubmit() {
-    var form 		= document.getElementById("userForm");
-    var id 			= form.elements["inputId"].value;
+	
+	var form = document.getElementById("userForm");
+	var lng  = parseValidationLang(i18n.lng());
+
+	var id 			= form.elements["inputId"].value;
     var name 		= form.elements["inputName"].value;
     var email 		= form.elements["inputEmail"].value;
     var profile 	= form.elements["inputProfile"].value;
     var username 	= form.elements["inputUsername"].value;
     var password 	= form.elements["inputPassword"].value;
-    var status 		= form.elements["inputStatus"].value;
+    var status 		= ($('#inputStatus').prop('checked') ? "on" : "off");
+    console.log('status',status);
    	submit(id, name, email, profile, username, password, status);
    	listUsers();
 }
 
+function validateAndSubmit($form) {
+	   if (formValidate($form)) {
+		   formSubmit();
+	   }
+}
 function init() {
     //hideForm();
-	
+	$.formUtils.loadModules('security, date');
 }

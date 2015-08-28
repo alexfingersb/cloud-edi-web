@@ -27,7 +27,9 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
 	<script src="js/i18next-1.10.1.min.js"></script>
+	<script src="ext/form-validator/jquery.form-validator.min.js"></script>
 	<script src="js/user.js"></script>
+	<script src="js/app.js"></script>
 	
 	<div id="header" class="row">
 		<nav class="navbar navbar-custom">
@@ -76,19 +78,19 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a href="#">
-								<img id="pt-BR" class="flags" src="img/pt.jpg">
+								<img id="pt-BR" data-lang="pt" class="flags" src="img/pt.jpg">
 							</a>
 						</li>
 								
 						<li>
 							<a href="#" >
-								<img id="en-US" class="flags" src="img/us.png">
+								<img id="en-US" data-lang="en" class="flags" src="img/us.png">
 							</a>
 						</li>
 
 						<li>
 							<a href="#">
-								<img id="es" class="flags" src="img/es.png">
+								<img id="es" data-lang="es" class="flags" src="img/es.png">
 							</a>
 						</li>
 						
@@ -99,7 +101,7 @@
 						</li>
 						<li>
 							<a href="#">
-								<span data-i18n="nav.logoff" class="glyphicon glyphicon-off" aria-hidden="true"></span>
+								<span data-i18n="nav.logoff" class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
 							</a>
 						</li>
 					</ul>
@@ -139,12 +141,8 @@
 		
 		$('.flags').on('click', function(e) {
 			e.preventDefault();
-			i18n.setLng($(this).attr('id'), {fixLng: true}, function(translation) {
-		    	$('[data-i18n]').i18n();
-		    	$('.selectpicker').i18n();
-		  	});
+			configureLocale($(this));
 		});
-
 	</script>
 	
 </body>
