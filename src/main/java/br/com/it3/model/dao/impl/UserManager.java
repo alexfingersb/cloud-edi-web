@@ -53,4 +53,17 @@ public class UserManager extends JpaBaseDAO<User> implements UserDAO<User> {
 		}
 		return entity;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<User> search(final String name) {
+		if (em == null)
+			em = emf.createEntityManager();
+		logger.info(String.format("search user by name %s", name));
+		Query query = em.createNamedQuery("User.searchByName");
+		query.setParameter("name", name + "%");
+		List<User> users = (List<User>)query.getResultList();
+		em.close();
+		return users;
+		
+	}
 }

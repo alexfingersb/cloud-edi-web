@@ -5,6 +5,187 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1><small data-i18n="route.title"></small></h1>
+	<script src="js/route.js"></script>
+	
+	<h1>
+		<small data-i18n="route.title"></small>
+	</h1>
+	
+	<div class="row">
+		<div id="div_main" class="col-md-12">
+			<div class="panel panel-primary">
+				<!-- Default panel contents -->
+				<div class="panel-heading"></div>
+				<div class="panel-body">
+	
+					<form name="contextForm" id="contextForm" class="form-horizontal">
+					
+						<input type="hidden" id="inputRouteId" name="input" class="form-control">
+					
+						<div class="row">
+							<div class="col-sm-12">
+								<div>
+									<span class="text-muted"> <span style="color: red;">*</span>
+										<em data-i18n="validation.required_field_helper"> </em>
+									</span>
+								</div>
+								<div class="form-group col-sm-6">
+									<div class="col-sm-3 control-label">
+										<label for="inputRouteDescription" data-i18n="route.description"></label> 
+										<span style="color: red;">*</span>
+									</div>
+									<div class="col-sm-8">
+										<input id="inputRouteDescription" name="inputRouteDescription" class="form-control">
+									</div>
+								</div>
+								
+								<div class="form-group col-sm-13">
+									<div class="col-sm-2 pull-right">
+										<button id="cancel" onclick="listUsers();" type="button" class="btn btn-error">
+											<span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+											<span data-i18n="actions.back"></span>
+										</button>
+										<button id="save"  onclick="validateAndSubmit(this.form);" type="button" class="btn btn-success">
+											<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+											<span data-i18n="actions.save"></span>
+										</button>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="row">
+							<div id="div_out" class="col-md-6">
+								<div class="panel panel-primary">
+									<!-- Default panel contents -->
+									<div class="panel-heading" data-i18n="route.source"></div>
+									<div class="panel-body">
+										<a class="btn btn-default" href="pages/context/route_jms.html">JMS</a>
+										<a class="btn btn-default" href="pages/context/route_ftp.html">FTP</a>
+										<a class="btn btn-default" href="pages/context/route_file.html">FILE</a>
+										
+										<div class="form-group">
+											<div class="col-sm-4 control-label">
+												<label for="inputUserSource" data-i18n="route.userOut"></label> 
+												<span style="color: red;">*</span>
+											</div>
+											<div class="col-sm-5">
+												<input id="inputUserSource" name="inputUserSource" list="datalistUsers" class="form-control">
+												<datalist id="datalistUsers">
+												</datalist>
+											</div>
+										</div>
+										<div id="route_content_out"></div>
+										
+										<div class="form-group">
+											<div class="col-sm-4 control-label"></div>
+											<div class="col-sm-8">
+												<label for="inputFileRemoveAfter" class="col-sm-8" >
+										    		<input type="checkbox" id="inputFileRemoveAfter" name="inputFileRemoveAfter">
+										    		<span data-i18n="route.removeAfter"></span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="div_in" class="col-md-6">
+								<div class="panel panel-primary">
+									<!-- Default panel contents -->
+									<div class="panel-heading" data-i18n="route.destination"></div>
+									<div class="panel-body">
+										<a class="btn btn-default" href="pages/context/route_jms.html">JMS</a>
+										<a class="btn btn-default" href="pages/context/route_ftp.html">FTP</a>
+										<a class="btn btn-default" href="pages/context/route_file.html">FILE</a>
+								
+										<div class="form-group">
+											<div class="col-sm-4 control-label">
+												<label for="inputUserDestination" data-i18n="route.userIn"></label> 
+												<span style="color: red;">*</span>
+											</div>
+											<div class="col-sm-5">
+												<input id="inputUserDestination" name="inputUserDestination" list="datalistUsers" class="form-control">
+												<datalist id="datalistUsers">
+												</datalist>
+											</div>
+										</div>
+					
+										<div id="route_content_in"></div>
+									</div>
+								</div>
+								
+								<div class="form-group col-sm-13">
+									<div class="col-sm-2 btn-float-right">
+										<button id="routeAdd"  onclick="routeAdd(this.form);" type="button" class="btn btn-success">
+											<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+											<span data-i18n="actions.add"></span>
+										</button>
+									</div>
+								</div>
+								
+							</div>
+					
+							<table class="table table-hover">
+								<tr>
+									<th data-i18n="route.context"></th>
+									<th data-i18n="action.remove"></th>
+								</tr>
+								<tbody>
+									<tr>
+										<td>tp://3it.net/inbox/orders?username=finger&password=$password</td>
+										<td>Remove</td>
+									</tr>
+									<tr>
+										<td>jms://queue:finger@inbox-orders</td>
+										<td>Remove</td>
+									</tr>
+									<tr>
+										<td>http://3it.net/inbox/orders?username=finger&password=$password</td>
+										<td>Remove</td>
+									</tr>
+									<tr>
+										<td>ftps://3it.net/inbox/orders?username=finger&password=$password</td>
+										<td>Remove</td>
+									</tr>
+								</tbody>
+							</table>
+					
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script lang="javascript">
+		$(document).ready(function() {
+
+			$('#div_out a').click(function(e) {
+				e.preventDefault();
+				$('#div_out a').prop('class','btn btn-default');
+				$(this).prop('class','btn btn-info');
+				$('#route_content_out').load($(this).attr('href'));
+			});
+
+			$('#div_in a').click(function(e) {
+				e.preventDefault();
+				$('#div_in a').prop('class','btn btn-default');
+				$(this).prop('class','btn btn-info');
+				$('#route_content_in').load($(this).attr('href'));
+			});
+			
+			$('#inputUserSource').keyup(function() {
+				searchUser(this);					
+			})
+			
+			$('#inputUserDestination').keyup(function() {
+				searchUser(this);
+			});
+			
+			$('#div_in')
+			
+			configureLocale();
+			
+		});
+	</script>
 </body>
 </html>

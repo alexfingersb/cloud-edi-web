@@ -35,13 +35,28 @@
   	"passwordConfirm": "Re-enter Password",
   	"profile": "Profile",
   	"systemUsers": "System Users",
-  	"status": "Active"
+  	"status": "Active",
+  	"user": "User"
   },
   "download": {
   	"title": "Downloads" 
   },
   "route": {
-  	"title": "Context Routes"
+  	"title": "Routes configuration",
+  	"source": "Source Route",
+  	"destination": "Destination Route",
+  	"context": "Route's context (Here are the recipients)",
+  	"description": "Route description",
+  	"jmsId": "Jms ID",
+  	"ftpSite": "Remote site",
+  	"ftpUser": "User for ftp connection",
+  	"ftpPassword": "Ftp access password",
+  	"userOut": "Who are sending?",
+  	"userIn": "To whom I'm going to send?",
+  	"fileDirectory": "File Directory",
+  	"fileFilter": "Filter",
+  	"fileCopy": "Make a copy on",
+  	"removeAfter": "Remove at finish"
   },
   "actions": {
   	"title": "Actions",
@@ -51,7 +66,8 @@
   	"cancel": "Cancel",
   	"buttonSeeAll": "See All",
   	"buttonNewUser": "New User",
-  	"back": "Back"
+  	"back": "Back",
+  	"add": "Add"
   },
   "dialog": {
   	"confirm": "This item will be permanently deleted and cannot be recovered. Are you sure?",

@@ -1,9 +1,10 @@
 /**
- * 
+ * @author Alexandre Finger Sobirnho
  */
+
 window.onload = init;
-var socket = new WebSocket("ws://localhost:8080/cloud-edi-web/user");
-socket.onmessage = onMessage;
+var userws = new WebSocket("ws://localhost:8080/cloud-edi-web/user");
+userws.onmessage = onMessage;
 
 function onMessage(event) {
     var user = JSON.parse(event.data);
@@ -44,8 +45,11 @@ function parseJsonToForm(user) {
 	$('#inputStatus').prop('checked', checked);
 	
 	var editmode = (user.id !== "");
-	$('#inputPassword').prop('disabled',editmode);
-	$('#inputPasswordConfirm').prop('disabled',editmode);
+	if (editmode) {
+		$('#divUserPassword').hide();
+	} else {
+		$('#divUserPassword').show();
+	}
 }
 
 function parseJsonToTable(user) {
@@ -78,7 +82,7 @@ function submit(id, name, email, profile, username, password, status) {
         password: password,
         status: status
     };
-    socket.send(JSON.stringify(UserAction));
+	userws.send(JSON.stringify(UserAction));
 }
 
 function removeUser(id) {
@@ -92,7 +96,7 @@ function removeUser(id) {
         			action: "remove",
         			id: id
         	};
-        	socket.send(JSON.stringify(UserAction));
+        	userws.send(JSON.stringify(UserAction));
         	$( this ).dialog( "close" );
         },
         Cancel: function() {
@@ -107,7 +111,7 @@ function editUser(id) {
 			action: "edit",
 			id: id
 	};
-	socket.send(JSON.stringify(UserAction));
+	userws.send(JSON.stringify(UserAction));
 	$('#content').load('pages/users/user_form.html');
 }
 
@@ -115,22 +119,12 @@ function listUsers() {
     var UserAction = {
         action: "list"
     };
-    socket.send(JSON.stringify(UserAction));
+    userws.send(JSON.stringify(UserAction));
     $('#content').load('pages/users/user_list.html');
 }
 
-function toggleDevice(element) {
-    var id = element;
-    var DeviceAction = {
-        action: "toggle",
-        id: id
-    };
-    socket.send(JSON.stringify(DeviceAction));
-}
-
-function formSubmit() {
+function formSubmit(form) {
 	
-	var form = document.getElementById("userForm");
 	var lng  = parseValidationLang(i18n.lng());
 
 	var id 			= form.elements["inputId"].value;
@@ -140,14 +134,13 @@ function formSubmit() {
     var username 	= form.elements["inputUsername"].value;
     var password 	= form.elements["inputPassword"].value;
     var status 		= ($('#inputStatus').prop('checked') ? "on" : "off");
-    console.log('status',status);
    	submit(id, name, email, profile, username, password, status);
    	listUsers();
 }
 
-function validateAndSubmit($form) {
-	   if (formValidate($form)) {
-		   formSubmit();
+function validateAndSubmit(form) {
+	   if (formValidate(form)) {
+		   formSubmit(form);
 	   }
 }
 function init() {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="form-group">
+		<div class="col-sm-4">
+			<input type="hidden" class="form-control" id="inputJmsId" name="inputId">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-4 control-label">
+			<label for="inputJmsId" data-i18n="route.jmsId"></label> 
+			<span style="color: red;">*</span>
+		</div>
+		<div class="col-sm-5">
+			<div class="input-group">
+				<span class="input-group-addon" id="sizing-addon2">@</span>
+				<input id="inputJmsId" name="inputJmsId" class="form-control">
+			</div>
+		</div>
+	</div>
+
+	<script lang="javascript">
+	$(document).ready(function() {
+		configureLocale();
+	});
+</script>
+</body>
+</html>

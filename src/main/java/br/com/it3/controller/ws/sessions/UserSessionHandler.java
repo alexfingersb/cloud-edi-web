@@ -13,18 +13,18 @@ import javax.websocket.Session;
 
 import br.com.it3.model.dao.impl.UserManager;
 import br.com.it3.model.entities.User;
+import br.com.it3.model.json.JsonUtil;
 
 
 @ApplicationScoped
 public class UserSessionHandler {
 	private final Set<Session> sessions = new HashSet<>();
-//	private final Set<User> users = new HashSet<User>();
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	private UserManager userDao = new UserManager();
 	
 	public void addSession(Session session) {
 		if (sessions.add(session)) {
-			logger.info("[user' Sessao " + session.getId() + " adicionada");
+			logger.info("[user] Sessao " + session.getId() + " adicionada");
 		} else {
 			logger.info("[user] Sessao " + session.getId() + " ja existe");
 		}
@@ -73,8 +73,7 @@ public class UserSessionHandler {
     }
 
 	private JsonObject createMessage(User user, String action) {
-		JsonProvider provider = JsonProvider.provider();
-		JsonObject addMessage = buildUserProvider(user, provider, action);
+		JsonObject addMessage = buildUserJson(user, action);
 		return addMessage;
 	}
 
@@ -86,32 +85,22 @@ public class UserSessionHandler {
         return createMessage(user, "list");
     }
 
-	private JsonObject buildUserProvider(User user, JsonProvider provider, String action) {
-		return provider.createObjectBuilder()
-                .add("action", action)
-                .add("id", user.getId())
-                .add("name", user.getName())
-                .add("profile", user.getProfile().toString())
-                .add("status", user.getStatus())
-                .add("username", user.getUsername())
-                .add("password", user.getPassword())
-                .add("email", user.getEmail())
-                .build();
-	}
     
     public void updateUser(User user, Session mysession) {
-        JsonProvider provider = JsonProvider.provider();
         if (user != null) {
         	user = userDao.update(user);
-            JsonObject updateUser = buildUserProvider(user, provider, "udpate");
+            JsonObject updateUser = buildUserJson(user, "udpate");
             sendToOtherConnectedSessions(updateUser, mysession);
         }
     }
     
-    public void editUser(long id, Session mysession) {
-    	JsonProvider provider = JsonProvider.provider();
+    private JsonObject buildUserJson(User user, String action) {
+		return new JsonUtil().buildUserJson(user, action);
+	}
+
+	public void editUser(long id, Session mysession) {
     	User user = getUserById(id);
-    	JsonObject message = buildUserProvider(user, provider, "edit");
+    	JsonObject message = buildUserJson(user, "edit");
     	sendToSession(mysession, message);
     }
 
@@ -129,7 +118,7 @@ public class UserSessionHandler {
         }
     }
 
-    private void sendToSession(Session session, JsonObject message) {
+    private void sendToSession(Session session, Object message) {
         try {
             session.getBasicRemote().sendText(message.toString());
         } catch (IOException ex) {
@@ -137,5 +126,4 @@ public class UserSessionHandler {
             Logger.getLogger(UserSessionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

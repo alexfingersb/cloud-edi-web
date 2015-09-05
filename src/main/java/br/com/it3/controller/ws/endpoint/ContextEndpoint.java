@@ -16,33 +16,32 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import br.com.it3.controller.ws.sessions.UserSessionHandler;
-import br.com.it3.model.entities.User;
-import br.com.it3.model.enums.Profile;
+import br.com.it3.controller.ws.sessions.ContextSessionHandler;
+import br.com.it3.model.entities.Route;
 
 @ApplicationScoped
-@ServerEndpoint("/user")
-public class UserEndpoint {
+@ServerEndpoint("/context")
+public class ContextEndpoint {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	@Inject
-	private UserSessionHandler sessionHandler;
+	private ContextSessionHandler sessionHandler;
 
 	@OnOpen
 	public void open(Session session) {
-		logger.info("[user] open connection with sesson id " + session.getId());
+		logger.info("[context] open connection with sesson id " + session.getId());
 		sessionHandler.addSession(session);
 	}
 	
 	@OnClose
 	public void close(Session session) {
-		logger.info(String.format("[user] Session %s closed", session.getId()));
+		logger.info(String.format("[context] Session %s closed", session.getId()));
 		sessionHandler.removeSession(session);
 	}
 	
 	@OnError
 	public void onError(Throwable error) {
-		 Logger.getLogger(UserEndpoint.class.getName()).log(Level.SEVERE, null, error);
+		 Logger.getLogger(ContextEndpoint.class.getName()).log(Level.SEVERE, null, error);
 	}
 	
 	@OnMessage
@@ -51,41 +50,34 @@ public class UserEndpoint {
             JsonObject jsonMessage = reader.readObject();
             String action = jsonMessage.getString("action");
             
-            logger.info("[user] action="+action);
+            logger.info("[context] action="+action);
             
             if ("add".equals(action)) {
-                User user = formUser(jsonMessage);
-                sessionHandler.addUser(user, session);
+                Route route = formRoute(jsonMessage);
+                sessionHandler.addContext(route, session);
             } else if ("remove".equals(action)) {
                 int id = (int) jsonMessage.getInt("id");
                 sessionHandler.removeUser(id);
             } else if ("update".equals(action)) {
-                User user = formUser(jsonMessage);
-                sessionHandler.updateUser(user, session);
+                Route route = formRoute(jsonMessage);
+                sessionHandler.updateRoute(route, session);
             } else if ("list".equals(action)) {
-            	sessionHandler.getUsers(session);
+            	sessionHandler.getRoutes(session);
             } else if ("edit".equals(action)) {
             	int id = (int) jsonMessage.getInt("id");
-            	sessionHandler.editUser(id, session);
+            	sessionHandler.editRoute(id, session);
+            } else if ("searchUser".equals(action)) {
+            	String userName = jsonMessage.getString("name");
+            	sessionHandler.searchUser(userName, session);
             }
         }
 	}
 	
-	private User formUser(JsonObject jsonMessage) {
-		User user = new User();
-		user.setStatus(jsonMessage.getString("status"));
-        user.setName(jsonMessage.getString("name"));
-        user.setEmail(jsonMessage.getString("email"));
-        user.setProfile(Profile.valueOf(jsonMessage.getString("profile")));
-        user.setUsername(jsonMessage.getString("username"));
-
-        if ("add".equals(jsonMessage.getString("action"))) {
-	        user.setPassword(jsonMessage.getString("password")); //TODO Criprografar senha com MD5
-        } else {
-        	user.setId(Long.valueOf(jsonMessage.getString("id")));
-        }
+	private Route formRoute(JsonObject jsonMessage) {
+		Route route = new Route();
+		route.setDescription(jsonMessage.getString("description"));
         logger.info(jsonMessage.toString());
-		return user;
+		return route;
 	}
 	
 }

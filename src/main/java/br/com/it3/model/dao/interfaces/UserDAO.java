@@ -7,4 +7,6 @@ public interface UserDAO<User> extends BaseDAO<User> {
 	
 	public User update(User entity);
 	
+	public List<User> search(String name);
+	
 }

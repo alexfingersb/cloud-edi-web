@@ -1,0 +1,41 @@
+		
+		<div class="form-group">
+			<div class="col-sm-5">
+				<input type="hidden" class="form-control" id="inputId"	name="inputId">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputFtpSite" data-i18n="route.ftpSite"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="url" id="inputFtpSite" name="inputFtpSite" class="form-control">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputFtpUser" data-i18n="route.ftpUser"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input id="inputFtpUser" name="inputFtpUser" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputFtpPassword" data-i18n="route.ftpPassword"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="password" id="inputFtpPassword" name="inputFtpPassword" class="form-control">
+			</div>
+		</div>
+
+<script lang="javascript">
+	$(document).ready(function() {
+		configureLocale();
+	});
+</script>
