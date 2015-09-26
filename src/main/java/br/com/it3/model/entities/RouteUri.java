@@ -1,8 +1,23 @@
 package br.com.it3.model.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -28,14 +43,18 @@ public class RouteUri implements Serializable {
 	private String scheme;
 
 	//bi-directional many-to-one association to RouteFrom
-	@OneToMany(mappedBy="routeUri")
-	private List<RouteFrom> routeFroms;
+	@OneToMany(mappedBy="routeUri", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<RouteFrom> routeFrom;
 
 	//bi-directional many-to-one association to RouteTo
-	@OneToMany(mappedBy="routeUri")
-	private List<RouteTo> routeTos;
-
+	@OneToMany(mappedBy="routeUri", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<RouteTo> routeTo;
+	
 	public RouteUri() {
+		routeTo = new ArrayList<RouteTo>();
+		routeFrom = new ArrayList<RouteFrom>();
 	}
 
 	public long getId() {
@@ -70,45 +89,45 @@ public class RouteUri implements Serializable {
 		this.scheme = scheme;
 	}
 
-	public List<RouteFrom> getRouteFroms() {
-		return this.routeFroms;
+	public List<RouteFrom> getRouteFrom() {
+		return this.routeFrom;
 	}
 
-	public void setRouteFroms(List<RouteFrom> routeFroms) {
-		this.routeFroms = routeFroms;
+	public void setRouteFrom(List<RouteFrom> routeFrom) {
+		this.routeFrom = routeFrom;
 	}
 
 	public RouteFrom addRouteFrom(RouteFrom routeFrom) {
-		getRouteFroms().add(routeFrom);
+		getRouteFrom().add(routeFrom);
 		routeFrom.setRouteUri(this);
 
 		return routeFrom;
 	}
 
 	public RouteFrom removeRouteFrom(RouteFrom routeFrom) {
-		getRouteFroms().remove(routeFrom);
+		getRouteFrom().remove(routeFrom);
 		routeFrom.setRouteUri(null);
 
 		return routeFrom;
 	}
 
-	public List<RouteTo> getRouteTos() {
-		return this.routeTos;
+	public List<RouteTo> getRouteTo() {
+		return this.routeTo;
 	}
 
-	public void setRouteTos(List<RouteTo> routeTos) {
-		this.routeTos = routeTos;
+	public void setRouteTo(List<RouteTo> routeTo) {
+		this.routeTo = routeTo;
 	}
 
 	public RouteTo addRouteTo(RouteTo routeTo) {
-		getRouteTos().add(routeTo);
+		getRouteTo().add(routeTo);
 		routeTo.setRouteUri(this);
 
 		return routeTo;
 	}
 
 	public RouteTo removeRouteTo(RouteTo routeTo) {
-		getRouteTos().remove(routeTo);
+		getRouteTo().remove(routeTo);
 		routeTo.setRouteUri(null);
 
 		return routeTo;

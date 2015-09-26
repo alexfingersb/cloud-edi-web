@@ -1,6 +1,7 @@
 package br.com.it3.model.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -10,7 +11,19 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="USER_ROUTE")
-@NamedQuery(name="UserRoute.findAll", query="SELECT u FROM UserRoute u")
+@NamedQueries({
+		@NamedQuery(name="UserRoute.findAll", query="SELECT u FROM UserRoute u"),
+		@NamedQuery(name="UserRoute.findUser", query="SELECT DISTINCT u "
+				+ "FROM User u, UserRoute ur, Route r, RouteUri ru "
+				+ "JOIN ur.user urUser "
+				+ "JOIN ur.route urRoute "
+				+ "JOIN ur.routeUri urUri "
+				+ "WHERE urUser.id = u.id "
+				+ "	 AND urRoute.id = r.id "
+				+ "  AND urUri.id = ru.id "
+				+ "  AND ur.route.id = :rid "
+				+ "  AND ur.routeUri.id = :uid ") 
+})
 public class UserRoute implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,12 +32,18 @@ public class UserRoute implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_ROUTE_ID_GENERATOR")
 	private long id;
 
-	@Column(name="USER_ID")
-	private long userId;
+	@OneToOne (cascade = CascadeType.MERGE)
+	@JoinColumn (name = "USER_ID")
+	private User user;
 
 	//bi-directional many-to-one association to Route
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name="ROUTE_ID")
 	private Route route;
+	
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name="ROUTE_URI_ID")
+	private RouteUri routeUri;
 
 	public UserRoute() {
 	}
@@ -37,12 +56,12 @@ public class UserRoute implements Serializable {
 		this.id = id;
 	}
 
-	public long getUserId() {
-		return this.userId;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Route getRoute() {
@@ -51,6 +70,14 @@ public class UserRoute implements Serializable {
 
 	public void setRoute(Route route) {
 		this.route = route;
+	}
+
+	public RouteUri getRouteUri() {
+		return routeUri;
+	}
+
+	public void setRouteUri(RouteUri routeUri) {
+		this.routeUri = routeUri;
 	}
 
 }

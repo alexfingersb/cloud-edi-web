@@ -5,14 +5,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<h1><small data-i18n="user.newTitle"></small></h1>
-	
 	<div class="row">
 		<div class="col-md-8 col-centered">
 			<div class="panel panel-primary">
 				<!-- Default panel contents -->
-				<div class="panel-heading"></div>
+				<div class="panel-heading" data-i18n="user.newTitle"></div>
 				<div class="panel-body">
 					<div class="col-md-11 col-md-offset-1">
 						<form name="userForm" id="userForm" class="form-horizontal" >
@@ -37,8 +34,8 @@
 								<label for="inputProfile" class="col-sm-3 control-label" data-i18n="user.profile"></label>
 								<div class="col-sm-4">
 									<select class="form-control selectpicker" id="inputProfile" name="inputProfile">
-										<option value="Administrador">Administrador</option>
-										<option value="Usuario">Usuario</option>
+										<option value="ADMINISTRADOR">Administrador</option>
+										<option value="USUARIO">Usuário</option>
 									</select>
 								</div>
 								
@@ -57,7 +54,8 @@
 								</div>
 								<div class="col-sm-4">
 									<input type="text" class="form-control error" id="inputName" name="inputName" class="form-control"
-										data-validation="required" data-validation-error-msg-container="#name-error" maxlength="200">
+										data-validation="letternumeric" data-validation-allowing=" "
+										data-validation-error-msg-container="#name-error" maxlength="100">
 								</div>
 								<div class="col-sm-5">
 									<span id="name-error"></span>
@@ -85,7 +83,8 @@
 								</div>
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="inputUsername" name="inputUsername" 
-										data-validation="required" data-validation-error-msg-container="#username-error" maxlength="30">
+										data-validation="required" data-validation="alphanumeric" data-validation-allowing="-_"
+										data-validation-error-msg-container="#username-error" maxlength="30">
 								</div>
 								<div class="col-sm-5">
 									<span id="username-error"></span>
@@ -99,7 +98,7 @@
 										<span style="color:red;">*</span>
 									</div>
 									<div class="col-sm-4">
-										<input type="password" class="form-control" id="inputPassword" name="inputPassword"
+										<input type="password" class="form-control" id="inputPassword_confirmation" name="inputPassword_confirmation"
 											data-validation="required" data-validation-error-msg-container="#password-error" maxlength="50">
 									</div>
 									<div class="col-sm-5">
@@ -113,8 +112,8 @@
 										<span style="color:red;">*</span>
 									</div>
 									<div class="col-sm-4">
-										<input type="password" class="form-control" id="inputPasswordConfirm" name="inputPasswordConfirm" 
-											data-validation="required" data-validation-error-msg-container="#password-confirm-error" maxlength="50">
+										<input type="password" class="form-control" id="inputPassword" name="inputPassword" 
+											data-validation="confirmation" data-validation-error-msg-container="#password-confirm-error" maxlength="50">
 									</div>
 									<div class="col-sm-5">
 										<span id="password-confirm-error"></span>
@@ -128,7 +127,7 @@
 										<span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
 										<span data-i18n="actions.back"></span>
 									</button>
-									<button id="save"  onclick="validateAndSubmit(this.form);" type="button" class="btn btn-success">
+									<button id="save"  onclick="validateAndSubmitUser(this.form);" type="button" class="btn btn-success">
 										<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
 										<span data-i18n="actions.save"></span>
 									</button>

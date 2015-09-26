@@ -7,11 +7,11 @@
 		<class>br.com.it3.model.entities.User</class>
 		<class>br.com.it3.model.entities.AgentDownload</class>
 		<class>br.com.it3.model.entities.MessageLog</class>
+		<class>br.com.it3.model.entities.UserRoute</class>
 		<class>br.com.it3.model.entities.Route</class>
 		<class>br.com.it3.model.entities.RouteFrom</class>
 		<class>br.com.it3.model.entities.RouteTo</class>
 		<class>br.com.it3.model.entities.RouteUri</class>
-		<class>br.com.it3.model.entities.UserRoute</class>
 		
 		<properties>
 <!--             <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" /> -->

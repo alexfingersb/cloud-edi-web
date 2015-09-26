@@ -136,4 +136,22 @@ public class ContextSessionHandler {
 		sendToSession(mysession, ja.build());
 		
 	}
+
+	public void listUsers(Session mysession) {
+		JsonUtil json = new JsonUtil();
+		JsonArrayBuilder ja = Json.createArrayBuilder();
+
+		for (User user : new UserManager().findAll()) {
+			ja.add(json.buildUserJson(user, "listUsers"));
+		}
+		
+		sendToSession(mysession, ja.build());
+		
+	}
+
+	public void removeRote(int id) {
+		Route route = contextDao.findById(id);
+		contextDao.remove(route);
+	}
+
 }

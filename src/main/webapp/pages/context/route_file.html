@@ -1,36 +1,30 @@
 		
 		<div class="form-group">
 			<div class="col-sm-5">
-				<input type="hidden" class="form-control" id="inputId"	name="inputFileId">
+				<input type="hidden" class="form-control" id="inputFileId"	name="inputFileId">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-sm-4 control-label">
-				<label for="inputFtpFileDirectory" data-i18n="route.fileDirectory"></label> 
+				<label for="inputFileDirectory" data-i18n="route.fileDirectory"></label> 
 				<span style="color: red;">*</span>
 			</div>
 			<div class="col-sm-5">
-				<input id="inputFtpFileDirectory" name="inputFtpFileDirectory" class="form-control">
+				<input id="inputFileDirectory" name="inputFileDirectory" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#file-directory-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="file-directory-error"></span>
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<div class="col-sm-4 control-label">
-				<label for="inputFileFilter" data-i18n="route.fileFilter"></label> 
-				<span style="color: red;">*</span>
-			</div>
-			<div class="col-sm-5">
-				<input id="inputFileFilter" name="inputFileFilter" class="form-control">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-4 control-label">
 				<label for="inputFileCopy" data-i18n="route.fileCopy"></label> 
-				<span style="color: red;">*</span>
 			</div>
 			<div class="col-sm-5">
-				<input id="inputFileCopy" name="inputFileCopy" class="form-control">
+				<input id="inputFileCopy" name="inputFileCopy" class="form-control" maxlength="200">
 			</div>
 		</div>
 

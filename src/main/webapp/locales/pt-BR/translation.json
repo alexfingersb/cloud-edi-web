@@ -39,13 +39,17 @@
   	"user": "Usuário"
   },
   "download": {
-  	"title": "Downloads" 
+  	"title": "Downloads",
+  	"id": "Identificador",
+  	"system": "Selecione o seu sistema operacional" 
   },
   "route": {
+  	"listTitle": "Listagem de rotas",
   	"title": "Configuração de rotas",
   	"source": "Rota de Origem",
   	"destination": "Rota de Destino",
-  	"context": "Contexto da rota (Aqui ficam os destinatarios)",
+  	"context": "Caminho do contexto ",
+  	"options": "Opções",
   	"description": "Descrição da rota",
   	"jmsId": "Jms ID",
   	"ftpSite": "Endereço remoto",
@@ -53,21 +57,26 @@
   	"ftpPassword": "Senha de acesso ftp",
   	"userOut": "Usuário que está enviando",
   	"userIn": "Para quem vai enviar",
-  	"fileDirectory": "Diretório de pesquisa",
-  	"fileFilter": "Filtro",
-  	"fileCopy": "Fazer um cópia em",
-  	"removeAfter": "Remover ao finalizar"
+  	"fileDirectory": "Diretório do arquivo",
+  	"fileCopy": "Fazer uma cópia em",
+  	"removeAfter": "Remover arquivo ao finalizar",
+  	"whenFilter": "Extensão do arquivo",
+  	"protocol": "Protocolo"
   },
   "actions": {
   	"title": "Açōes",
+  	"action": "Ação",
   	"edit": "Editar",
   	"remove": "Remover",
   	"save": "Salvar",
   	"cancel": "Cancelar",
   	"buttonSeeAll": "Ver todos",
   	"buttonNewUser": "Novo Usuário",
+  	"buttonNewRoute": "Nova Rota",
   	"back": "Voltar",
-  	"add": "Adicionar"
+  	"add": "Adicionar",
+  	"download": "Baixar",
+  	"search": "Pesquisar por..."
   },
   "dialog": {
   	"confirm": "Este item será removido permanentemente e não poderá ser recuperado. Deseja prosseguir?",
@@ -78,6 +87,6 @@
   	"choose" : "Selecione uma opcao"
   },
   "validation": {
-  	"required_field_helper" : "Indica campos requeridos"
+  	"required_field_helper" : "Indica campos obrigatórios"
   }
 }

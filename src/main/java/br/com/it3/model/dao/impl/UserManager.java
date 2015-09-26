@@ -22,7 +22,6 @@ public class UserManager extends JpaBaseDAO<User> implements UserDAO<User> {
 	@Override
 	public List<User> findAll() {
 		em = emf.createEntityManager();
-		logger.info("find all users");
 		Query query = em.createNamedQuery("User.findAll");
 		List<User> users = (List<User>) query.getResultList();
 		em.close();
@@ -64,6 +63,18 @@ public class UserManager extends JpaBaseDAO<User> implements UserDAO<User> {
 		List<User> users = (List<User>)query.getResultList();
 		em.close();
 		return users;
-		
 	}
+
+	public User getUser(final String username) {
+		if (em == null)
+			em = emf.createEntityManager();
+		logger.info(String.format("search user by username ", username));
+		Query query = em.createNamedQuery("User.searchByUsername");
+		query.setParameter("username", username);
+		User user = (User) query.getSingleResult();
+		em.close();
+		return user;
+	}
+	
+	
 }

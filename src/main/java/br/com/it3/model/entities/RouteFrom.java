@@ -1,9 +1,24 @@
 package br.com.it3.model.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -21,23 +36,22 @@ public class RouteFrom implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ROUTE_FROM_ID_GENERATOR")
 	private long id;
 
-	@Column(name="\"FROM\"")
-	private BigDecimal from;
-
-	//bi-directional many-to-one association to MessageLog
-	@OneToMany(mappedBy="routeFrom")
-	private List<MessageLog> messageLogs;
-
 	//bi-directional many-to-one association to Route
-	@ManyToOne
+	@OneToOne (cascade = CascadeType.ALL)
 	private Route route;
 
+	//bi-directional many-to-one association to RouteTo
+	@OneToMany(mappedBy="routeFrom", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<RouteTo> routeTo;
+
 	//bi-directional many-to-one association to RouteUri
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name="ROUTE_URI_ID")
 	private RouteUri routeUri;
 
 	public RouteFrom() {
+		routeTo = new ArrayList<RouteTo>();
 	}
 
 	public long getId() {
@@ -48,42 +62,34 @@ public class RouteFrom implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getFrom() {
-		return this.from;
-	}
-
-	public void setFrom(BigDecimal from) {
-		this.from = from;
-	}
-
-	public List<MessageLog> getMessageLogs() {
-		return this.messageLogs;
-	}
-
-	public void setMessageLogs(List<MessageLog> messageLogs) {
-		this.messageLogs = messageLogs;
-	}
-
-	public MessageLog addMessageLog(MessageLog messageLog) {
-		getMessageLogs().add(messageLog);
-		messageLog.setRouteFrom(this);
-
-		return messageLog;
-	}
-
-	public MessageLog removeMessageLog(MessageLog messageLog) {
-		getMessageLogs().remove(messageLog);
-		messageLog.setRouteFrom(null);
-
-		return messageLog;
-	}
-
 	public Route getRoute() {
 		return this.route;
 	}
 
 	public void setRoute(Route route) {
 		this.route = route;
+	}
+
+	public List<RouteTo> getRouteTo() {
+		return this.routeTo;
+	}
+
+	public void setRouteTo(List<RouteTo> routeTo) {
+		this.routeTo = routeTo;
+	}
+
+	public RouteTo addRouteTo(RouteTo routeTo) {
+		getRouteTo().add(routeTo);
+		routeTo.setRouteFrom(this);
+
+		return routeTo;
+	}
+
+	public RouteTo removeRouteTo(RouteTo routeTo) {
+		getRouteTo().remove(routeTo);
+		routeTo.setRouteFrom(null);
+
+		return routeTo;
 	}
 
 	public RouteUri getRouteUri() {

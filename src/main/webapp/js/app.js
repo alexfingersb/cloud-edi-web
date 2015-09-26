@@ -26,6 +26,7 @@ function configureLocale(element) {
 function configureValidationLocale(lng) {
 	var lng = parseValidationLang(lng);
 	$.validate({
+		modules : 'security',
 		lang : lng,
 		validateOnBlur : false,
 		showHelpOnFocus : false,

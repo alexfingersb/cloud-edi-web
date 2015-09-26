@@ -10,21 +10,21 @@
 			<div class="panel panel-primary">
 				<!-- Default panel contents -->
 				<div class="panel-heading"
-					data-i18n="user.listTitle"></div>
+					data-i18n="route.listTitle"></div>
 				<div class="panel-body">
-					<a href="pages/users/user_form.html" class="btn btn-info pull-right"
-						data-i18n="actions.buttonNewUser" data-action="new">
+					<a href="pages/context/route_form.html" class="btn btn-info pull-right"
+						data-i18n="actions.buttonNewRoute" data-action="new">
 					</a>
 				</div>
-				<table id="userTable" class="table table-hover">
+				<table id="routeTableList" class="table table-hover">
 					<tr>
-						<th data-i18n="user.name"></th>
-						<th data-i18n="user.email"></th>
-						<th data-i18n="user.username"></th>
-						<th data-i18n="user.profile"></th>
-						<th data-i18n="actions.title" class="text-center"></th>
+						<th data-i18n="route.description"></th>
+						<th data-i18n="route.userOut"></th>
+						<th data-i18n="route.protocol"></th>
+						<th data-i18n="route.context"></th>
+						<th data-i18n="route.options"></th>
+						<th data-i18n="actions.remove"></th>
 					</tr>
-					
 				</table>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 				} if ($(this).attr("data-action") === "remove") {
 					removeUser($(this).attr("data-id"))
 				} if ($(this).attr("data-action") === "list") {
-					listUsers();
+					listRoutes();
 				}
 			});
 		});

@@ -27,8 +27,8 @@ import br.com.it3.model.entities.User;
 import br.com.it3.model.entities.UserRoute;
 
 @ApplicationScoped
-@ServerEndpoint("/context")
-public class ContextEndpoint {
+@ServerEndpoint("/download")
+public class DownloadEndpoint {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	@Inject
@@ -36,19 +36,17 @@ public class ContextEndpoint {
 
 	@OnOpen
 	public void open(Session session) {
-		logger.info("[context] open connection with sesson id " + session.getId());
 		sessionHandler.addSession(session);
 	}
 	
 	@OnClose
 	public void close(Session session) {
-		logger.info(String.format("[context] Session %s closed", session.getId()));
 		sessionHandler.removeSession(session);
 	}
 	
 	@OnError
 	public void onError(Throwable error) {
-		 Logger.getLogger(ContextEndpoint.class.getName()).log(Level.SEVERE, null, error);
+		 Logger.getLogger(DownloadEndpoint.class.getName()).log(Level.SEVERE, null, error);
 	}
 	
 	@OnMessage
@@ -57,25 +55,8 @@ public class ContextEndpoint {
             JsonObject jsonMessage = reader.readObject();
             String action = jsonMessage.getString("action");
             
-            logger.info("[context] action="+action);
-            
-            if ("add".equals(action)) {
-                Route route = formRoute(jsonMessage);
-                sessionHandler.addContext(route, session);
-            } else if ("remove".equals(action)) {
-                int id = (int) jsonMessage.getInt("id");
-                sessionHandler.removeRote(id);
-            } else if ("update".equals(action)) {
-                Route route = formRoute(jsonMessage);
-                sessionHandler.updateRoute(route, session);
-            } else if ("list".equals(action)) {
+            if ("list".equals(action)) {
             	sessionHandler.getRoutes(session);
-            } else if ("edit".equals(action)) {
-            	int id = (int) jsonMessage.getInt("id");
-            	sessionHandler.editRoute(id, session);
-            } else if ("searchUser".equals(action)) {
-            	String userName = jsonMessage.getString("name");
-            	sessionHandler.searchUser(userName, session);
             } else if ("listUsers".equals(action)) {
             	sessionHandler.listUsers(session);
             }

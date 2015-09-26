@@ -29,7 +29,6 @@ function onMessage(event) {
     	$('[data-i18n]').i18n();
     }
     if (user.action === "edit") {
-    	console.log("Receive message: " + event.data);
     	parseJsonToForm(user);
     }
 }
@@ -39,7 +38,9 @@ function parseJsonToForm(user) {
 	$('#inputName').val(user.name);
 	$('#inputEmail').val(user.email);
 	$('#inputUsername').val(user.username);
-	$('#inputProfile').selectpicker('val',user.profile);
+	
+	
+	$('#inputProfile').selectpicker('val',(user.profile === 'Administrador' ? 'ADMINISTRADOR' : 'USUARIO'));
 	$('#inputStatus').val(user.status);
 	var checked = (user.status === 'on' ?  true : false);
 	$('#inputStatus').prop('checked', checked);
@@ -47,6 +48,8 @@ function parseJsonToForm(user) {
 	var editmode = (user.id !== "");
 	if (editmode) {
 		$('#divUserPassword').hide();
+		$('#inputPassword').attr('data-validation-optional','true');
+		$('#inputPassword_confirmation').attr('data-validation-optional','true');
 	} else {
 		$('#divUserPassword').show();
 	}
@@ -66,7 +69,7 @@ function parseJsonToTable(user) {
 	table.append(row);
 }
 
-function submit(id, name, email, profile, username, password, status) {
+function submitUserWS(id, name, email, profile, username, password, status) {
     var action = "add";
     if (id)	{
     	action = "update";
@@ -123,9 +126,9 @@ function listUsers() {
     $('#content').load('pages/users/user_list.html');
 }
 
-function formSubmit(form) {
+function userFormSubmit(form) {
 	
-	var lng  = parseValidationLang(i18n.lng());
+//	var lng  = parseValidationLang(i18n.lng());
 
 	var id 			= form.elements["inputId"].value;
     var name 		= form.elements["inputName"].value;
@@ -134,15 +137,16 @@ function formSubmit(form) {
     var username 	= form.elements["inputUsername"].value;
     var password 	= form.elements["inputPassword"].value;
     var status 		= ($('#inputStatus').prop('checked') ? "on" : "off");
-   	submit(id, name, email, profile, username, password, status);
+   	submitUserWS(id, name, email, profile, username, password, status);
    	listUsers();
 }
 
-function validateAndSubmit(form) {
+function validateAndSubmitUser(form) {
 	   if (formValidate(form)) {
-		   formSubmit(form);
+		   userFormSubmit(form);
 	   }
 }
+
 function init() {
     //hideForm();
 	$.formUtils.loadModules('security, date');

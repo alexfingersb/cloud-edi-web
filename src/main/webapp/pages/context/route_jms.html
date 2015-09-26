@@ -19,7 +19,11 @@
 		<div class="col-sm-5">
 			<div class="input-group">
 				<span class="input-group-addon" id="sizing-addon2">@</span>
-				<input id="inputJmsId" name="inputJmsId" class="form-control">
+				<input id="inputJmsId" name="inputJmsId" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#jmsid-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="jmsid-error"></span>
 			</div>
 		</div>
 	</div>

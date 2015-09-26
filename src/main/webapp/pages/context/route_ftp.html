@@ -1,7 +1,7 @@
 		
 		<div class="form-group">
 			<div class="col-sm-5">
-				<input type="hidden" class="form-control" id="inputId"	name="inputId">
+				<input type="hidden" class="form-control" id="inputFTPId" name="inputFTPId">
 			</div>
 		</div>
 
@@ -11,7 +11,11 @@
 				<span style="color: red;">*</span>
 			</div>
 			<div class="col-sm-5">
-				<input type="url" id="inputFtpSite" name="inputFtpSite" class="form-control">
+				<input type="url" id="inputFtpSite" name="inputFtpSite" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ftp-site-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ftp-site-error"></span>
 			</div>
 		</div>
 		
@@ -21,7 +25,11 @@
 				<span style="color: red;">*</span>
 			</div>
 			<div class="col-sm-5">
-				<input id="inputFtpUser" name="inputFtpUser" class="form-control">
+				<input id="inputFtpUser" name="inputFtpUser" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ftp-user-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ftp-user-error"></span>
 			</div>
 		</div>
 		<div class="form-group">
@@ -30,7 +38,11 @@
 				<span style="color: red;">*</span>
 			</div>
 			<div class="col-sm-5">
-				<input type="password" id="inputFtpPassword" name="inputFtpPassword" class="form-control">
+				<input type="password" id="inputFtpPassword" name="inputFtpPassword" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ftp-password-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ftp-password-error"></span>
 			</div>
 		</div>
 

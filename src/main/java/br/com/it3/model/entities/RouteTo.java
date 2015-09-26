@@ -2,7 +2,6 @@ package br.com.it3.model.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -23,16 +22,13 @@ public class RouteTo implements Serializable {
 	@Column(name="CHOICE_WHEN")
 	private String choiceWhen;
 
-	//bi-directional many-to-one association to MessageLog
-	@OneToMany(mappedBy="routeTo")
-	private List<MessageLog> messageLogs;
-
-	//bi-directional many-to-one association to Route
-	@ManyToOne
-	private Route route;
+	//bi-directional many-to-one association to RouteFrom
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name="ROUTE_FROM_ID")
+	private RouteFrom routeFrom;
 
 	//bi-directional many-to-one association to RouteUri
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name="ROUTE_URI_ID")
 	private RouteUri routeUri;
 
@@ -55,34 +51,12 @@ public class RouteTo implements Serializable {
 		this.choiceWhen = choiceWhen;
 	}
 
-	public List<MessageLog> getMessageLogs() {
-		return this.messageLogs;
+	public RouteFrom getRouteFrom() {
+		return this.routeFrom;
 	}
 
-	public void setMessageLogs(List<MessageLog> messageLogs) {
-		this.messageLogs = messageLogs;
-	}
-
-	public MessageLog addMessageLog(MessageLog messageLog) {
-		getMessageLogs().add(messageLog);
-		messageLog.setRouteTo(this);
-
-		return messageLog;
-	}
-
-	public MessageLog removeMessageLog(MessageLog messageLog) {
-		getMessageLogs().remove(messageLog);
-		messageLog.setRouteTo(null);
-
-		return messageLog;
-	}
-
-	public Route getRoute() {
-		return this.route;
-	}
-
-	public void setRoute(Route route) {
-		this.route = route;
+	public void setRouteFrom(RouteFrom routeFrom) {
+		this.routeFrom = routeFrom;
 	}
 
 	public RouteUri getRouteUri() {

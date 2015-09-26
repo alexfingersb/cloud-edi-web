@@ -39,13 +39,17 @@
   	"user": "User"
   },
   "download": {
-  	"title": "Downloads" 
+  	"title": "Downloads",
+  	"id": "Identifier",
+  	"system": "Select your operating system" 
   },
   "route": {
+  	"listTitle": "List of routes",
   	"title": "Routes configuration",
   	"source": "Source Route",
   	"destination": "Destination Route",
-  	"context": "Route's context (Here are the recipients)",
+  	"context": "Context path",
+  	"options": "Options",
   	"description": "Route description",
   	"jmsId": "Jms ID",
   	"ftpSite": "Remote site",
@@ -54,20 +58,25 @@
   	"userOut": "Who are sending?",
   	"userIn": "To whom I'm going to send?",
   	"fileDirectory": "File Directory",
-  	"fileFilter": "Filter",
   	"fileCopy": "Make a copy on",
-  	"removeAfter": "Remove at finish"
+  	"removeAfter": "Remove file at finish",
+  	"whenFilter": "File Extension",
+  	"protocol": "Protocol"
   },
   "actions": {
   	"title": "Actions",
+  	"action": "Action",
   	"edit": "Edit",
   	"remove": "Remove",
   	"save": "Save",
   	"cancel": "Cancel",
   	"buttonSeeAll": "See All",
   	"buttonNewUser": "New User",
+  	"buttonNewRoute": "New Route",
   	"back": "Back",
-  	"add": "Add"
+  	"add": "Add",
+  	"download": "Download",
+  	"search": "Search for..."
   },
   "dialog": {
   	"confirm": "This item will be permanently deleted and cannot be recovered. Are you sure?",
@@ -78,7 +87,7 @@
   	"choose" : "Select one option"
   },
   "validation": {
-  	"required_field_helper" : "Indicates required field"
+  	"required_field_helper" : "Indicates required fields"
   }
   
 }

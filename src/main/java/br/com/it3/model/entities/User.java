@@ -18,9 +18,10 @@ import br.com.it3.model.enums.Profile;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-	@NamedQuery(name = "User.searchByName", query = "SELECT u FROM User u WHERE u.name LIKE :name")
+	@NamedQuery(name = "User.searchByName", query = "SELECT u FROM User u WHERE u.name LIKE :name"),
+	@NamedQuery(name = "User.searchByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
 })
-@Table(name="`USER`")
+@Table(name="\"USER\"")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;

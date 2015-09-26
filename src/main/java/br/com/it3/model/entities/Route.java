@@ -1,39 +1,53 @@
 package br.com.it3.model.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  * The persistent class for the ROUTE database table.
  * 
  */
 @Entity
-@NamedQuery(name="Route.findAll", query="SELECT r FROM Route r")
+@NamedQueries({
+	@NamedQuery(name = "Route.findAll", query = "SELECT r FROM Route r"),
+	@NamedQuery(name = "Route.listAll", query = "select r.id, r.description, ru.scheme, ru.contextPath, ru.options"
+			+ " FROM Route r"
+			+ " JOIN r.routeFrom rf "
+			+ " JOIN rf.routeUri ru ")
+})
 public class Route implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ROUTE_ID_GENERATOR", sequenceName="SEQ_ROUTE_ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ROUTE_ID_GENERATOR")
+	@SequenceGenerator(name = "ROUTE_ID_GENERATOR", sequenceName = "SEQ_ROUTE_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROUTE_ID_GENERATOR")
 	private long id;
 
 	private String description;
 
-	//bi-directional many-to-one association to RouteFrom
-	@OneToMany(mappedBy="route")
-	private List<RouteFrom> routeFroms;
+	// bi-directional many-to-one association to RouteFrom
+	@OneToOne(mappedBy = "route", cascade = CascadeType.ALL)
+	private RouteFrom routeFrom;
 
-	//bi-directional many-to-one association to RouteTo
-	@OneToMany(mappedBy="route")
-	private List<RouteTo> routeTos;
-
-	//bi-directional many-to-one association to UserRoute
-	@OneToMany(mappedBy="route")
-	private List<UserRoute> userRoutes;
+	// bi-directional many-to-one association to RouteFrom
+	@OneToMany(mappedBy = "route", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<UserRoute> userRoute;
 
 	public Route() {
+		userRoute = new ArrayList<UserRoute>();
 	}
 
 	public long getId() {
@@ -52,70 +66,35 @@ public class Route implements Serializable {
 		this.description = description;
 	}
 
-	public List<RouteFrom> getRouteFroms() {
-		return this.routeFroms;
+	public RouteFrom getRouteFrom() {
+		return this.routeFrom;
 	}
 
-	public void setRouteFroms(List<RouteFrom> routeFroms) {
-		this.routeFroms = routeFroms;
+	public void setRouteFrom(RouteFrom routeFrom) {
+		this.routeFrom = routeFrom;
 	}
 
 	public RouteFrom addRouteFrom(RouteFrom routeFrom) {
-		getRouteFroms().add(routeFrom);
+		// getRouteFrom().add(routeFrom);
 		routeFrom.setRoute(this);
 
 		return routeFrom;
 	}
 
 	public RouteFrom removeRouteFrom(RouteFrom routeFrom) {
-		getRouteFroms().remove(routeFrom);
+		// getRouteFrom().remove(routeFrom);
 		routeFrom.setRoute(null);
 
 		return routeFrom;
 	}
 
-	public List<RouteTo> getRouteTos() {
-		return this.routeTos;
+	public List<UserRoute> getUserRoute() {
+		return userRoute;
 	}
 
-	public void setRouteTos(List<RouteTo> routeTos) {
-		this.routeTos = routeTos;
-	}
-
-	public RouteTo addRouteTo(RouteTo routeTo) {
-		getRouteTos().add(routeTo);
-		routeTo.setRoute(this);
-
-		return routeTo;
-	}
-
-	public RouteTo removeRouteTo(RouteTo routeTo) {
-		getRouteTos().remove(routeTo);
-		routeTo.setRoute(null);
-
-		return routeTo;
-	}
-
-	public List<UserRoute> getUserRoutes() {
-		return this.userRoutes;
-	}
-
-	public void setUserRoutes(List<UserRoute> userRoutes) {
-		this.userRoutes = userRoutes;
-	}
-
-	public UserRoute addUserRoute(UserRoute userRoute) {
-		getUserRoutes().add(userRoute);
+	public void addUserRoute(UserRoute userRoute) {
+		this.userRoute.add(userRoute);
 		userRoute.setRoute(this);
-
-		return userRoute;
-	}
-
-	public UserRoute removeUserRoute(UserRoute userRoute) {
-		getUserRoutes().remove(userRoute);
-		userRoute.setRoute(null);
-
-		return userRoute;
 	}
 
 }
