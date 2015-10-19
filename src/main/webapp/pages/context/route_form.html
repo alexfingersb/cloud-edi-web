@@ -58,9 +58,15 @@
 									<!-- Default panel contents -->
 									<div class="panel-heading" data-i18n="route.source"></div>
 									<div class="panel-body">
-										<a id="btn-jms-out" class="btn btn-default" href="pages/context/route_jms.html">JMS</a>
-										<a id="btn-ftp-out" class="btn btn-default" href="pages/context/route_ftp.html">FTP</a>
-										<a id="btn-file-out" class="btn btn-default" href="pages/context/route_file.html">FILE</a>
+										<div class="form-group">
+											<a id="btn-file-out" class="btn btn-default" href="pages/context/route_file.html">FILE</a>
+											<a id="btn-jms-out" class="btn btn-default" href="pages/context/route_jms.html">JMS</a>
+											<a id="btn-ftp-out" class="btn btn-default" href="pages/context/route_ftp.html">FTP</a>
+											<a id="btn-ftps-out" class="btn btn-default" href="pages/context/route_ftps.html">FTPS</a>
+											<a id="btn-http-out" class="btn btn-default" href="pages/context/route_http.html">HTTP</a>
+											<a id="btn-https-out" class="btn btn-default" href="pages/context/route_https.html">HTTPS</a>
+											<a id="btn-ssh-out" class="btn btn-default" href="pages/context/route_ssh.html">SSH</a>
+										</div>
 										
 										<div class="form-group">
 											<div class="col-sm-4 control-label">
@@ -89,10 +95,15 @@
 									<!-- Default panel contents -->
 									<div class="panel-heading" data-i18n="route.destination"></div>
 									<div class="panel-body">
-										<a id="btn-jms-in" class="btn btn-default" href="pages/context/route_jms.html">JMS</a>
-										<a id="btn-ftp-in" class="btn btn-default" href="pages/context/route_ftp.html">FTP</a>
-										<a id="btn-file-in" class="btn btn-default" href="pages/context/route_file.html">FILE</a>
-								
+										<div class="form-group">
+											<a id="btn-file-in" class="btn btn-default" href="pages/context/route_file.html">FILE</a>
+											<a id="btn-jms-in" class="btn btn-default" href="pages/context/route_jms.html">JMS</a>
+											<a id="btn-ftp-in" class="btn btn-default" href="pages/context/route_ftp.html">FTP</a>
+											<a id="btn-ftps-in" class="btn btn-default" href="pages/context/route_ftps.html">FTPS</a>
+											<a id="btn-http-in" class="btn btn-default" href="pages/context/route_http.html">HTTP</a>
+											<a id="btn-https-in" class="btn btn-default" href="pages/context/route_https.html">HTTPS</a>
+											<a id="btn-ssh-in" class="btn btn-default" href="pages/context/route_ssh.html">SSH</a>
+										</div>
 										<div class="form-group">
 											<div class="col-sm-4 control-label">
 												<label for="inputUserDestination" data-i18n="route.userIn"></label> 
@@ -158,7 +169,6 @@
 				$(this).prop('class','btn btn-info');
 				$('.selectpicker').selectpicker('refresh');
 				$('#route_content_out').load($(this).attr('href'));
-				
 			});
 
 			$('#div_in a').click(function(e) {

@@ -1,0 +1,53 @@
+		
+		<div class="form-group">
+			<div class="col-sm-5">
+				<input type="hidden" class="form-control" id="inputHttpsId" name="inputHttpssId">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputHttpssSite" data-i18n="route.httpsSite"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="url" id="inputHttpsSite" name="inputHttpsSite" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#http-site-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="http-site-error"></span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputHttpsUser" data-i18n="route.httpsUser"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input id="inputHttpsUser" name="inputHttpsUser" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#http-user-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="http-user-error"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputHttpsPassword" data-i18n="route.httpsPassword"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="password" id="inputHttpsPassword" name="inputHttpsPassword" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#http-password-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="http-password-error"></span>
+			</div>
+		</div>
+
+<script lang="javascript">
+	$(document).ready(function() {
+		configureLocale();
+	});
+</script>

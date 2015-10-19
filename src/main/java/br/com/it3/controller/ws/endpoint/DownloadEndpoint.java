@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.websocket.OnClose;
@@ -17,35 +16,31 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import br.com.it3.controller.ws.sessions.ContextSessionHandler;
-import br.com.it3.model.dao.impl.UserManager;
-import br.com.it3.model.entities.Route;
-import br.com.it3.model.entities.RouteFrom;
-import br.com.it3.model.entities.RouteTo;
-import br.com.it3.model.entities.RouteUri;
-import br.com.it3.model.entities.User;
-import br.com.it3.model.entities.UserRoute;
+import br.com.it3.controller.ws.sessions.DownloadSessionHandler;
 
 @ApplicationScoped
-@ServerEndpoint("/download")
+@ServerEndpoint("/downloads")
 public class DownloadEndpoint {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	@Inject
-	private ContextSessionHandler sessionHandler;
+	private DownloadSessionHandler sessionHandler;
 
 	@OnOpen
 	public void open(Session session) {
+		logger.info("[download] open connection with session" + session.getId());
 		sessionHandler.addSession(session);
 	}
 	
 	@OnClose
 	public void close(Session session) {
+		logger.info("[download] close session");
 		sessionHandler.removeSession(session);
 	}
 	
 	@OnError
 	public void onError(Throwable error) {
+		logger.info("error: " + error.getMessage());
 		 Logger.getLogger(DownloadEndpoint.class.getName()).log(Level.SEVERE, null, error);
 	}
 	
@@ -59,64 +54,12 @@ public class DownloadEndpoint {
             	sessionHandler.getRoutes(session);
             } else if ("listUsers".equals(action)) {
             	sessionHandler.listUsers(session);
+            } else if ("download".equals(action)) {
+            	sessionHandler.download(jsonMessage, session);
+            } else if ("searchRoute".equals(action)) {
+            	String param = jsonMessage.getString("param");
+            	sessionHandler.searchRoute(param, session);
             }
         }
 	}
-	
-	private Route formRoute(JsonObject jsonMessage) {
-		logger.info(jsonMessage.toString());
-		
-		Route route = new Route();
-		route.setDescription(jsonMessage.getString("description"));
-		
-		RouteFrom from = new RouteFrom();
-		from.setRoute(route);
-
-		// Endereco do remetente
-		RouteUri uriFrom = new RouteUri();
-		uriFrom.setScheme(jsonMessage.getString("protocol"));
-		uriFrom.setContextPath(jsonMessage.getString("cpath"));
-		uriFrom.setOptions(jsonMessage.getString("options"));
-		uriFrom.addRouteFrom(from);
-		
-		// Remetente
-		User user = new UserManager().getUser(jsonMessage.getString("user"));
-		UserRoute userRouteFrom = new UserRoute();
-		userRouteFrom.setRoute(route);
-		userRouteFrom.setUser(user);
-		userRouteFrom.setRouteUri(uriFrom);
-		route.addUserRoute(userRouteFrom);
-		
-		//Ler lista de rotas ḑestinatarias
-		JsonObject jo = jsonMessage.getJsonObject("context");
-		JsonArray ja = jo.getJsonArray("route");
-		
-		for (int i = 0; i < ja.size(); i++) {
-			JsonObject jsonRoute = ja.getJsonObject(i);
-			
-			// Endereco do destinatario
-			RouteUri uriTo = new RouteUri();
-			uriTo.setScheme(jsonRoute.getString("protocol"));
-			uriTo.setContextPath(jsonRoute.getString("cpath"));
-			uriTo.setOptions(jsonRoute.getString("options"));
-			
-			User userto = new UserManager().getUser(jsonRoute.getString("user"));
-			UserRoute userRouteTo = new UserRoute();
-			userRouteTo.setRoute(route);
-			userRouteTo.setUser(userto);
-			userRouteTo.setRouteUri(uriTo);
-			route.addUserRoute(userRouteTo);
-			
-			RouteTo to = new RouteTo();
-			to.setChoiceWhen(jsonRoute.getString("filter"));
-			to.setRouteUri(uriTo);
-			
-			uriTo.addRouteTo(to);
-			from.addRouteTo(to);
-			
-		}
-		route.setRouteFrom(from);
-		return route;
-	}
-	
 }

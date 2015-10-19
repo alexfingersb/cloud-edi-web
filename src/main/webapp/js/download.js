@@ -1,37 +1,31 @@
 /**
- * @author Alexandre Finger Sobirnho
+ * @author Alexandre Finger Sobrinho
  */
 
-var downloadws = new WebSocket("ws://localhost:8080/cloud-edi-web/download");
+var downloadws = new WebSocket("ws://192.168.56.1:8080/cloud-edi-web/downloads");
 downloadws.onmessage = onMessage;
+downloadws.onopen = onOpen;
+downloadws.onerror = onError;
 var timeout;
+
+function onError(event) {
+	console.log(event);
+}
+
+function onOpen(event) {
+	console.log('[download] connect websocket');
+}
 
 function onMessage(event) {
 	var data = JSON.parse(event.data);
 	
 	if (data.action === 'list') {
 		downloadTable(data);
+	} if (data.action === 'download') {
+		download(data);
 	}
 }
 
-function parseFileFormRoute(userto, filter) {
-	console.log('parse file form route');
-	var copy = $('#inputFileCopy').val();
-	var options = '';
-	
-	if (copy) {
-		options = copy;
-	}
-	
-	var route = {
-			userTo: userto,
-			filter: filter,
-			protocol: 'FILE',
-			cpath: $('#inputFtpFileDirectory').val(),
-			options: options
-	};
-	downloadToTable(route);
-}
 
 function listRoutesToDownload() {
 	var route = {
@@ -44,8 +38,8 @@ function downloadTable(data) {
 	var table = $('#downloadTable').find('tbody');
 	var row = $('<tr></tr>');
 	row.attr('id', data.id);
-	row.append('<td>' + data.id + '</td>');
-	row.append('<td>' + data.description   + '</td>');
+	row.append('<td class="identify">' + data.id + '</td>');
+	row.append('<td class="description">' + data.description   + '</td>');
 	var action = '<a class="btn btn-primary" href="#" onclick="downloadSetup(' + data.id + ');"><i class="glyphicon glyphicon-cloud-download" data-i18n="actions.download"> </i></a>';
 	row.append('<td class="text-center">' + action + '</td>');
 	table.append(row);
@@ -54,8 +48,14 @@ function downloadTable(data) {
 }
 
 function downloadSetup(id) {
-	var system = $('#inputSystem :selected')
-	alert('Downloading route ' + id + ' and SO ' + system );
+	var system = $('#inputSystem :selected').val();
+	
+	var route = {
+	        action: "download",
+	        id: id,
+	        system: system
+	    };
+	downloadws.send(JSON.stringify(route));
 }
 
 function getSystemArch() {var OSName="unknown OS";
@@ -65,3 +65,33 @@ function getSystemArch() {var OSName="unknown OS";
 	if (navigator.appVersion.indexOf("Linux")!=-1) OSName="linux";
 	return OSName;
 }
+
+function download(data) {
+    document.getElementById('iframe_down').src = "/cloud-edi-web/download/" + data.id + "_agent.zip";
+};
+
+function routeSearch(param) {
+	var action = {
+			action: "searchRoute",
+			param: param
+		};
+		
+	downloadws.send(JSON.stringify(action));
+}
+
+function searchRouteQuery(el) {
+	var param = $(el).val();
+	param = $.trim(param);
+	
+	$("#downloadTable tr:gt(0)").each(function(i, tr) {
+		var $td = $(this).find('td');
+		var id = $td.eq(0).text();
+		var desc = $td.eq(1).text();
+		if (desc.toLowerCase().indexOf(param.toLowerCase()) >= 0) {
+			$(this).show();
+		} else {
+			$(this).hide();
+		}
+	});
+}
+

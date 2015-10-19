@@ -25,9 +25,9 @@ public class ContextManager extends JpaBaseDAO<Route> implements ContextDAO {
 	public List<Route> findAll() {
 		em = emf.createEntityManager();
 		Query query = em.createNamedQuery("Route.findAll");
-		List<Route> users = (List<Route>) query.getResultList();
-		em.close();
-		return users;
+		List<Route> list = (List<Route>) query.getResultList();
+		//em.close();
+		return list;
 	}
 
 	@Override
@@ -62,6 +62,19 @@ public class ContextManager extends JpaBaseDAO<Route> implements ContextDAO {
 		}
 		//em.close();
 		return user;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Route> search(String param) {
+		if (em == null)
+			em = emf.createEntityManager();
+		
+		Query query = em.createNamedQuery("Route.search");
+		query.setParameter("param", "%" + param + "%");
+		List<Route> list = (List<Route>) query.getResultList();
+		//em.close();
+		return list;
 	}
 	
 }

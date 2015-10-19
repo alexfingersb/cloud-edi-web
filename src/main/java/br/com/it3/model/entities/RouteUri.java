@@ -132,5 +132,14 @@ public class RouteUri implements Serializable {
 
 		return routeTo;
 	}
+	
+	@Override
+	public String toString() {
+		if (getOptions() != null) {
+			return getScheme().toLowerCase() + ":" + getContextPath() + "?" + getOptions();
+		} else {
+			return getScheme().toLowerCase() + ":" + getContextPath();
+		}
+	}
 
 }

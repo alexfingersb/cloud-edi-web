@@ -2,8 +2,7 @@
  * @author Alexandre Finger Sobirnho
  */
 
-window.onload = init;
-var routews = new WebSocket("ws://localhost:8080/cloud-edi-web/context");
+var routews = new WebSocket("ws://192.168.56.1:8080/cloud-edi-web/context");
 routews.onmessage = onMessage;
 var timeout;
 

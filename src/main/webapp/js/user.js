@@ -3,7 +3,7 @@
  */
 
 window.onload = init;
-var userws = new WebSocket("ws://localhost:8080/cloud-edi-web/user");
+var userws = new WebSocket("ws://192.168.56.1:8080/cloud-edi-web/user");
 userws.onmessage = onMessage;
 
 function onMessage(event) {

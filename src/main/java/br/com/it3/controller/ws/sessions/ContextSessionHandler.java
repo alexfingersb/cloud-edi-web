@@ -153,5 +153,4 @@ public class ContextSessionHandler {
 		Route route = contextDao.findById(id);
 		contextDao.remove(route);
 	}
-
 }

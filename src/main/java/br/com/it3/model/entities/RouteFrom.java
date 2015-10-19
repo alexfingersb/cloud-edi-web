@@ -99,5 +99,4 @@ public class RouteFrom implements Serializable {
 	public void setRouteUri(RouteUri routeUri) {
 		this.routeUri = routeUri;
 	}
-
 }

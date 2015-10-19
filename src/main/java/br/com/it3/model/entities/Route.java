@@ -26,7 +26,8 @@ import javax.persistence.SequenceGenerator;
 	@NamedQuery(name = "Route.listAll", query = "select r.id, r.description, ru.scheme, ru.contextPath, ru.options"
 			+ " FROM Route r"
 			+ " JOIN r.routeFrom rf "
-			+ " JOIN rf.routeUri ru ")
+			+ " JOIN rf.routeUri ru "),
+	@NamedQuery(name = "Route.search", query = "SELECT r FROM Route r WHERE r.description LIKE :param OR r.id LIKE :param")
 })
 public class Route implements Serializable {
 	private static final long serialVersionUID = 1L;

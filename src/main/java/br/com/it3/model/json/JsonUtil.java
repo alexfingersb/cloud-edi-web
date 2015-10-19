@@ -79,4 +79,12 @@ public class JsonUtil {
                 .add("context", context)
                 .build();
 	}
+	
+	public JsonObject buildDownloadJson(int id, String url, String action) {
+		return provider.createObjectBuilder()
+				.add("action", action)
+				.add("url", url)
+				.add("id", String.valueOf(id))
+				.build();
+	}
 }

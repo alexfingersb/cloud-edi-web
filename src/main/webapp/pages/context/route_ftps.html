@@ -1,0 +1,53 @@
+		
+		<div class="form-group">
+			<div class="col-sm-5">
+				<input type="hidden" class="form-control" id="inputFtpsId" name="inputFtpsId">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputFtpsSite" data-i18n="route.ftpsSite"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="url" id="inputFtpsSite" name="inputFtpsSite" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ftps-site-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ftps-site-error"></span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputFtpsUser" data-i18n="route.ftpsUser"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input id="inputFtpsUser" name="inputFtpsUser" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ftps-user-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ftps-user-error"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputFtpsPassword" data-i18n="route.ftpsPassword"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="password" id="inputFtpsPassword" name="inputFtpsPassword" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ftps-password-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ftps-password-error"></span>
+			</div>
+		</div>
+
+<script lang="javascript">
+	$(document).ready(function() {
+		configureLocale();
+	});
+</script>

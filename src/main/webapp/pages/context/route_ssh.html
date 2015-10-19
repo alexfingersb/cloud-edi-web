@@ -1,0 +1,53 @@
+		
+		<div class="form-group">
+			<div class="col-sm-5">
+				<input type="hidden" class="form-control" id="inputSshId" name="inputSshId">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputSshSite" data-i18n="route.sshSite"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="url" id="inputSshSite" name="inputSshSite" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ssh-site-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ftp-site-error"></span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputSshUser" data-i18n="route.sshUser"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input id="inputSshUser" name="inputSshUser" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ssh-user-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ssh-user-error"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 control-label">
+				<label for="inputSshPassword" data-i18n="route.sshPassword"></label> 
+				<span style="color: red;">*</span>
+			</div>
+			<div class="col-sm-5">
+				<input type="password" id="inputSshPassword" name="inputSshPassword" class="form-control"
+					data-validation="required" data-validation-error-msg-container="#ssh-password-error" maxlength="200">
+			</div>
+			<div class="col-sm-5">
+				<span id="ssh-password-error"></span>
+			</div>
+		</div>
+
+<script lang="javascript">
+	$(document).ready(function() {
+		configureLocale();
+	});
+</script>
