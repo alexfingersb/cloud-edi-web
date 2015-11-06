@@ -3,6 +3,6 @@
 <createdBy>alexfingersb</createdBy>
 <createdTime>2015-05-24 21:16:03 UTC</createdTime>
 <ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
-<shouldBeOpen>false</shouldBeOpen>
+<shouldBeOpen>true</shouldBeOpen>
 <selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
 </relationalModel>

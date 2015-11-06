@@ -14,12 +14,14 @@
   	"title": "Dashboard",
   	"fileName": "Nome do Arquivo",
   	"fileSize" : "Tamanho",
-  	"fileDate": "Data do Envio",
+  	"fileDate": "Data do Arquivo",
+  	"fileCrc": "CRC",
   	"receiver": "Destinatário",
   	"sender": "Origem",
-  	"status": "Estatus",
-  	"lastestFilesSent": "Últimos Arquivos Que Voce Enviou",
-  	"lastestFilesReceived": "Últimos Arquivos que Voce Recebeu"
+  	"sentDate": "Data do Envio",
+  	"receivedDate": "Data da Recepção",
+  	"lastestFilesSent": "Últimos Arquivos Que Você Enviou",
+  	"lastestFilesReceived": "Últimos Arquivos que Você Recebeu"
   },
   "about": {
   	"developedBy": "Desenvolvido por",
@@ -85,7 +87,7 @@
   	"back": "Voltar",
   	"add": "Adicionar",
   	"download": "Baixar",
-  	"search": "Pesquisar por..."
+  	"search": "Digite aqui para pesquisar pelo Identificador ou pela Descrição da rota"
   },
   "dialog": {
   	"confirm": "Este item será removido permanentemente e não poderá ser recuperado. Deseja prosseguir?",

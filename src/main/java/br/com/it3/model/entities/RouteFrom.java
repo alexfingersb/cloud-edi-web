@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,7 +50,7 @@ public class RouteFrom implements Serializable {
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name="ROUTE_URI_ID")
 	private RouteUri routeUri;
-
+	
 	public RouteFrom() {
 		routeTo = new ArrayList<RouteTo>();
 	}
@@ -99,4 +100,5 @@ public class RouteFrom implements Serializable {
 	public void setRouteUri(RouteUri routeUri) {
 		this.routeUri = routeUri;
 	}
+
 }

@@ -63,7 +63,7 @@ public class ContextSessionHandler {
 		}
 	}
 
-	private Route getRouteById(long id) {
+	public Route getRouteById(long id) {
 		Route route = contextDao.findById(id);
 		return route;
 	}

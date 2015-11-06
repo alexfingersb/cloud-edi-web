@@ -1,7 +1,12 @@
 package br.com.it3.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -31,7 +36,7 @@ public class RouteTo implements Serializable {
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name="ROUTE_URI_ID")
 	private RouteUri routeUri;
-
+	
 	public RouteTo() {
 	}
 
@@ -66,4 +71,5 @@ public class RouteTo implements Serializable {
 	public void setRouteUri(RouteUri routeUri) {
 		this.routeUri = routeUri;
 	}
+
 }

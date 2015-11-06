@@ -2,6 +2,7 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F7480305-CDF3-9100-2B43-B2316477B106" name="ROUTE">
 <createdBy>alexfingersb</createdBy>
 <createdTime>2015-05-24 21:33:08 UTC</createdTime>
+<commentInRDBMS>The routes</commentInRDBMS>
 <ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
@@ -13,6 +14,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="DESCRIPTION" id="B242F3B7-6DEB-A8A0-ACE2-B9B614F8E521">

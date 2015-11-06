@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Note class="oracle.dbtools.crest.model.design.Note" name="Note_1" directorySegmentName="seg_0" id="5AD706E7-E226-B314-F405-5FBCAB2D22B2">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 20:01:37 UTC</createdTime>
+<comment>P = Primary Key&lt;br/&gt;F = Foreign key&lt;br/&gt;* = Indexes</comment>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+</Note>

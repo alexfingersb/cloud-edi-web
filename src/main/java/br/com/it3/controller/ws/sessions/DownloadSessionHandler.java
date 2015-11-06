@@ -262,14 +262,14 @@ public class DownloadSessionHandler {
 		}
 	}
 
-	public void searchRoute(String param, Session session) {
-		for (Route route : contextDao.search(param)) {
-			JsonObject addMessage = createListMessage(route);
-			sendToSession(session, addMessage);
-		}
-		
-		
-	}
+//	public void searchRoute(String param, Session session) {
+//		for (Route route : contextDao.search(param)) {
+//			JsonObject addMessage = createListMessage(route);
+//			sendToSession(session, addMessage);
+//		}
+//		
+//		
+//	}
 	
 
 }

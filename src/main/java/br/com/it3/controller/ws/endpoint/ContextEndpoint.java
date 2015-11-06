@@ -18,6 +18,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import br.com.it3.controller.ws.sessions.ContextSessionHandler;
+import br.com.it3.model.dao.impl.ContextManager;
 import br.com.it3.model.dao.impl.UserManager;
 import br.com.it3.model.entities.Route;
 import br.com.it3.model.entities.RouteFrom;
@@ -86,6 +87,15 @@ public class ContextEndpoint {
 		logger.info(jsonMessage.toString());
 		
 		Route route = new Route();
+		
+		if (jsonMessage.getString("id") != null && !"".equals(jsonMessage.getString("id"))) {
+			int id = Integer.valueOf(jsonMessage.getString("id"));
+			if (id > 0) {
+				route = sessionHandler.getRouteById(id);
+			}
+		}
+		
+		
 		route.setDescription(jsonMessage.getString("description"));
 		
 		RouteFrom from = new RouteFrom();

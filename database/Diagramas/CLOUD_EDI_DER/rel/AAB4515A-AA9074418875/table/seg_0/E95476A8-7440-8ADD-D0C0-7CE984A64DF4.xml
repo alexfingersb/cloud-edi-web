@@ -13,6 +13,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="CHOICE_WHEN" id="E9425B2A-501F-2694-8875-9A4425A0D8B0">
@@ -25,20 +27,6 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>100</dataTypeSize>
 <autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ROUTE_ID" id="46E229F9-FF4D-0740-F27D-0A5F0704BBE2">
-<createdBy>alexfingersb</createdBy>
-<createdTime>2015-05-24 21:47:43 UTC</createdTime>
-<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<delegate>99462B3C-B3F8-6C19-4749-94014676DFE0</delegate>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="6F4E7189-BB36-4E8D-8AB5-68E5431E2524" referredColumn="99462B3C-B3F8-6C19-4749-94014676DFE0"/>
-</associations>
 </Column>
 <Column name="ROUTE_URI_ID" id="4BF44C75-7373-5EF6-953E-44EE01D02CCC">
 <createdBy>alexfingersb</createdBy>
@@ -54,6 +42,20 @@
 <colAssociation fkAssociation="597D9F37-29E7-F3A5-1DB6-DDA9E484F1F3" referredColumn="4B48982C-ABD8-163E-37B4-C7961B887024"/>
 </associations>
 </Column>
+<Column name="ROUTE_FROM_ID" id="E3AE9886-2E94-4681-63F9-F138C24831CB">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-09-10 23:42:41 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<delegate>A1590C4B-BCB1-9DD5-D446-DAB937392455</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BD7C22A6-1DC3-6F26-F7C5-71F863CD1F3E" referredColumn="A1590C4B-BCB1-9DD5-D446-DAB937392455"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="E0626B12-52E6-C03A-DA04-A6DB4A6A9D56" name="ROUTE_TO_PK">
@@ -67,17 +69,7 @@
 <colUsage columnID="B92DCFE6-6440-3CD8-92EB-C9310B416F49"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7AB31750-6A74-FF73-46AF-A63F296ED331" name="ROUTE_TO_ROUTE_FK">
-<createdBy>alexfingersb</createdBy>
-<createdTime>2015-05-24 21:47:43 UTC</createdTime>
-<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="46E229F9-FF4D-0740-F27D-0A5F0704BBE2"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="38C0E23D-CE7E-60CA-0DA2-2689C273F303" name="ROUTE_TO_ROUTE_URI_FK">
+<ind_PK_UK id="38C0E23D-CE7E-60CA-0DA2-2689C273F303" name="ROUTE_URI_ROUTE_TO_FK">
 <createdBy>alexfingersb</createdBy>
 <createdTime>2015-05-24 21:47:53 UTC</createdTime>
 <ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
@@ -85,6 +77,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="4BF44C75-7373-5EF6-953E-44EE01D02CCC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E3702014-FFE0-9644-C6BB-A8EFE0A947B2" name="ROUTE_FROM_ROUTE_TO_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-09-10 23:42:41 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E3AE9886-2E94-4681-63F9-F138C24831CB"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

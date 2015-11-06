@@ -16,47 +16,48 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import br.com.it3.controller.ws.sessions.DownloadSessionHandler;
+import br.com.it3.controller.ws.sessions.DashboardSessionHandler;
 
 @ApplicationScoped
-@ServerEndpoint("/downloads")
-public class DownloadEndpoint {
+@ServerEndpoint("/dashboard")
+public class DashboardEndpoint {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	@Inject
-	private DownloadSessionHandler sessionHandler;
-
+	private DashboardSessionHandler sessionHandler;
+	
 	@OnOpen
 	public void open(Session session) {
-		logger.info("[download] open connection with session" + session.getId());
+		logger.info("[dashboard] open connection with session" + session.getId());
 		sessionHandler.addSession(session);
 	}
 	
 	@OnClose
 	public void close(Session session) {
-		logger.info("[download] close session");
+		logger.info("[dashboard] close session");
 		sessionHandler.removeSession(session);
 	}
 	
 	@OnError
 	public void onError(Throwable error) {
 		logger.info("error: " + error.getMessage());
-		 Logger.getLogger(DownloadEndpoint.class.getName()).log(Level.SEVERE, null, error);
+		 Logger.getLogger(DashboardEndpoint.class.getName()).log(Level.SEVERE, null, error);
 	}
 	
 	@OnMessage
 	public void onMessage(String message, Session session) {
+		System.out.println("dashboard: " + message);
+		
 		try (JsonReader reader = Json.createReader(new StringReader(message))) {
-            JsonObject jsonMessage = reader.readObject();
-            String action = jsonMessage.getString("action");
-            
-            if ("list".equals(action)) {
-            	sessionHandler.getRoutes(session);
-            } else if ("listUsers".equals(action)) {
-            	sessionHandler.listUsers(session);
-            } else if ("download".equals(action)) {
-            	sessionHandler.download(jsonMessage, session);
-            }
-        }
+	        
+			JsonObject jsonMessage = reader.readObject();
+	        
+			String action = jsonMessage.getString("action");
+
+	        if ("list".equals(action)) {
+	        	sessionHandler.listDashboard(session);
+	        }
+		}
+		
 	}
 }

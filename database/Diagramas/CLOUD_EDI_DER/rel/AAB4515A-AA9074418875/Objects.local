@@ -10,11 +10,13 @@
    <object objectType="Table" objectID="F7480305-CDF3-9100-2B43-B2316477B106" name="ROUTE" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="1C703088-F916-9D76-54EA-0C1A9F9F9D46" name="MESSAGE_LOG_ROUTE_TO_FK" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="288F6371-3D6E-91ED-FBB3-6D467A6F24E9" name="ROUTE_FROM_ROUTE_FK" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="597D9F37-29E7-F3A5-1DB6-DDA9E484F1F3" name="ROUTE_TO_ROUTE_URI_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="597D9F37-29E7-F3A5-1DB6-DDA9E484F1F3" name="ROUTE_URI_ROUTE_TO_FK" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="5A1F0A08-F014-0B75-32DF-6E5367983D8C" name="USER_ROUTE_USER_FK" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="6F4E7189-BB36-4E8D-8AB5-68E5431E2524" name="ROUTE_TO_ROUTE_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="B6C932E6-8FCE-E46F-C6D9-94388EB66230" name="ROUTE_FROM_ROUTE_URI_FK" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="B937DEDB-958A-C2AC-25A6-4898FCCF3D85" name="MESSAGE_LOG_ROUTE_FROM_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="BD7C22A6-1DC3-6F26-F7C5-71F863CD1F3E" name="ROUTE_FROM_ROUTE_TO_FK" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="CEE055DD-3D59-61B3-CB89-353D9E21F4B5" name="AGENT_DOWNLOAD_USER_FK" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="DC635BAC-0F44-E1E2-6B76-4859C086B2C5" name="USER_ROUTE_ROUTE_FK" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="FF306A78-2771-C28A-6B01-C9338FB49F2B" name="ROUTE_FROM_ROUTE_URI_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="FC69630C-C53F-84BD-0EB0-853B81841D6E" name="USER_ROUTE_ROUTE_URI_FK" seqName="seg_0"/>
+   <object objectType="Note" objectID="5AD706E7-E226-B314-F405-5FBCAB2D22B2" name="Note_1" seqName="seg_0"/>
 </oracle.dbtools.crest.model.design.relational.RelationalDesign>

@@ -2,6 +2,7 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A125A40A-566F-4195-C723-02E1D969DB14" name="USER_ROUTE">
 <createdBy>alexfingersb</createdBy>
 <createdTime>2015-05-24 21:44:00 UTC</createdTime>
+<commentInRDBMS>Contains the relational model with user and your routes</commentInRDBMS>
 <ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
@@ -13,6 +14,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ROUTE_ID" id="3788FE0C-5E79-17D2-B823-C16310F2EB46">
@@ -41,6 +44,20 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="5A1F0A08-F014-0B75-32DF-6E5367983D8C" referredColumn="EC3B125E-48E0-B5F0-C9E9-5645F2CFF489"/>
+</associations>
+</Column>
+<Column name="ROUTE_URI_ID" id="AA32A3AF-0B2B-77F0-80C9-6EBE2E54EC46">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-09-21 13:23:48 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<delegate>4B48982C-ABD8-163E-37B4-C7961B887024</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FC69630C-C53F-84BD-0EB0-853B81841D6E" referredColumn="4B48982C-ABD8-163E-37B4-C7961B887024"/>
 </associations>
 </Column>
 </columns>
@@ -74,6 +91,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="B980C8C4-44B6-EE1E-41EB-CBECCABA6D2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="306D33B5-83EC-4316-4828-D157C0EFA711" name="USER_ROUTE_ROUTE_URI_FK">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-09-21 13:23:48 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA32A3AF-0B2B-77F0-80C9-6EBE2E54EC46"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

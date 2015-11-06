@@ -17,7 +17,8 @@
   	"fileDate": "Date",
   	"receiver": "Receiver",
   	"sender": "Sender",
-  	"status": "Status",
+  	"sentDate": "Sent Date",
+  	"receivedDate": "Received Date",
   	"lastestFilesSent": "The Lastest Files You Sent",
   	"lastestFilesReceived": "The Lastest Files You Received"
   },
@@ -88,7 +89,7 @@
   	"back": "Back",
   	"add": "Add",
   	"download": "Download",
-  	"search": "Search for..."
+  	"search": "Type here to search by Identifier or Route description"
   },
   "dialog": {
   	"confirm": "This item will be permanently deleted and cannot be recovered. Are you sure?",

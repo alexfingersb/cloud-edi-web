@@ -17,44 +17,17 @@
 			    <button type="button" class="btn btn-info pull-right" data-i18n="actions.buttonSeeAll"></button>
 			  </div>
 			
-			  <table class="table table-hover">
+			  <table id="receiverDashboardTable" class="table table-hover">
+			  	<thead>
 			    	<tr>
 			    		<th data-i18n="dashboard.fileName"></th>
 			    		<th data-i18n="dashboard.fileSize"></th>
-			    		<th data-i18n="dashboard.fileDate"></th>
-			    		<th data-i18n="dashboard.receiver"></th>
-			    		<th data-i18n="dashboard.status"></th>
+			    		<th data-i18n="dashboard.fileCrc"></th>
+			    		<th data-i18n="dashboard.sentDate"></th>
+			    		<th data-i18n="dashboard.receivedDate"></th>
 			    	</tr>
-			    <tbody>
-			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
-			    		<td>Coluna 5</td>
-			    	</tr>
-			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
-			    		<td>Coluna 5</td>
-			    	</tr>
-			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
-			    		<td>Coluna 5</td>
-			    	</tr>
-			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
-			    		<td>Coluna 5</td>
-			    	</tr>
-			    </tbody>  
+			    </thead>
+			    <tbody></tbody>  
 			  </table>
 			</div>
 		</div>
@@ -68,44 +41,23 @@
 			  </div>
 			
 			  <!-- Table -->
-			  <table class="table table-hover">
-		    	<tr>
-		    		<th data-i18n="dashboard.fileName"></th>
-		    		<th data-i18n="dashboard.fileSize"></th>
-		    		<th data-i18n="dashboard.fileDate"></th>
-		    		<th data-i18n="dashboard.sender"></th>
-		    	</tr>
-			    <tbody>
+			  <table id="senderDashboardTable" class="table table-hover">
+		    	<thead>
 			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
+			    		<th data-i18n="dashboard.fileName"></th>
+			    		<th data-i18n="dashboard.fileSize"></th>
+			    		<th data-i18n="dashboard.fileCrc"></th>
+			    		<th data-i18n="dashboard.sentDate"></th>
+			    		<th data-i18n="dashboard.receivedDate"></th>
 			    	</tr>
-			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
-			    	</tr>
-			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
-			    	</tr>
-			    	<tr>
-			    		<td>Coluna 1</td>
-			    		<td>Coluna 2</td>
-			    		<td>Coluna 3</td>
-			    		<td>Coluna 4</td>
-			    	</tr>
-			    </tbody>
+		    	</thead>
+			    <tbody></tbody>
 			  </table>
 			</div>
 		</div>
 	</div>
 	<script lang="javascript">
+		listDashboard();
 		configureLocale();
 	</script>
 </body>

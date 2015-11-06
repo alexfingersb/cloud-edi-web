@@ -13,6 +13,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="FILE_NAME" id="C30BF7A0-B6F9-A262-BD99-75C2F1CB7A0A">
@@ -94,6 +96,15 @@
 <colAssociation fkAssociation="B937DEDB-958A-C2AC-25A6-4898FCCF3D85" referredColumn="A1590C4B-BCB1-9DD5-D446-DAB937392455"/>
 </associations>
 </Column>
+<Column name="CRC" id="C48051BB-F820-E51E-B6FC-6D5C54FB845D">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-10-29 18:21:20 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="DBFED2D7-80F8-2A2B-9A4C-AC766812461E" name="MESSAGE_LOG_PK">
@@ -105,6 +116,42 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="4D6600B6-62E6-52AD-D4B1-E219E513F508"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="12FE5D26-B323-1BCC-9F42-733ACA48C38E" name="MESSAGE_LOG_FILENAME_IDX">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 19:29:47 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C30BF7A0-B6F9-A262-BD99-75C2F1CB7A0A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E7DE01A7-3832-5408-E393-26B23CF14272" name="MESSAGE_LOG_RECEIVEDDATE_IDX">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 19:29:47 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F463679D-ABDE-33AD-A689-8902F5897EE7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="74103BBE-D41C-F47A-029A-075629B0EB61" name="MESSAGE_LOG_SENTDATE_IDX">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 19:29:47 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA1E2674-48D5-082A-5CA8-7A1BF07A39A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="535960A0-AC0E-1F24-0B74-D81F30CCB341" name="MESSAGE_LOG_CRC_IDX">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-10-29 18:22:43 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C48051BB-F820-E51E-B6FC-6D5C54FB845D"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="02FF6849-6CBC-9E3E-C262-C18F7750300D" name="MESSAGE_LOG_ROUTE_TO_FK">

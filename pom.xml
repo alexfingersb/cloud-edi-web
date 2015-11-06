@@ -113,4 +113,6 @@
 		</dependency>
 
 	</dependencies>
+	<name>CloudEDI Web</name>
+	<url>https://github.com/finger75/cloud-edi-web</url>
 </project>

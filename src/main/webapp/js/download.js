@@ -87,7 +87,7 @@ function searchRouteQuery(el) {
 		var $td = $(this).find('td');
 		var id = $td.eq(0).text();
 		var desc = $td.eq(1).text();
-		if (desc.toLowerCase().indexOf(param.toLowerCase()) >= 0) {
+		if (desc.toLowerCase().indexOf(param.toLowerCase()) >= 0 || id.indexOf(param) >= 0) {
 			$(this).show();
 		} else {
 			$(this).hide();

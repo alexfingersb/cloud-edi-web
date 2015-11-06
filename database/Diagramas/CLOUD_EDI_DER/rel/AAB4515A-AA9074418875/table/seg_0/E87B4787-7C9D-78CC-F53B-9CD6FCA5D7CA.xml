@@ -13,6 +13,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="NAME" id="A6A5D7C0-6804-2A9B-E0A4-51C1DEC120FC">
@@ -57,6 +59,30 @@
 <dataTypeSize>100</dataTypeSize>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="STATUS" id="0F2D2F48-841F-E2F8-198C-9D2B69D822F6">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 18:52:58 UTC</createdTime>
+<comment>&apos;on&apos; when the user is active on system&lt;br/&gt;&apos;off&apos; when the user is inactive on system</comment>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROFILE" id="2A911262-AC39-0961-CE17-3B785B207F87">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 18:55:43 UTC</createdTime>
+<comment>User or Administrator</comment>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="17CA11D6-F07F-C141-8963-2B1CF1391A99" name="USER_PK">
@@ -68,6 +94,34 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="EC3B125E-48E0-B5F0-C9E9-5645F2CFF489"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ECCE843D-A2F6-8085-6AD6-8035C2ACD8CC" name="USER_USERNAME_IDX">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 19:24:13 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="935E2D7A-0D87-F20E-649C-EE87BF012839"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A6B4FC4F-4DC6-CC65-3B15-D2DAA0CD1023" name="USER_NAME_IDX">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 19:32:57 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A6A5D7C0-6804-2A9B-E0A4-51C1DEC120FC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B0C5713-9645-49F9-127F-B8FEFF9F6A15" name="USER_EMAIL_IDX">
+<createdBy>alexfingersb</createdBy>
+<createdTime>2015-08-19 19:32:57 UTC</createdTime>
+<ownerDesignName>CLOUD_EDI_DER</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="609AE755-5319-AD5F-DE7F-8F48A8ED00B0"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
