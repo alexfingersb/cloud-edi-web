@@ -101,6 +101,16 @@
   },
   "validation": {
   	"required_field_helper" : "Indicates required fields"
+  },
+  "login" : {
+  	"title" : "Acess to Cloud EDI System",
+  	"username" : "Username",
+  	"password" : "Password",
+  	"signin" : "Signing",
+  	"rememberMe" : "Remember me",
+  	"sorry" : "Sorry!",
+  	"invalidMessage": "We couldn't find an account with that username or password.",
+  	"tryAgain": "Please try again!"
   }
   
 }

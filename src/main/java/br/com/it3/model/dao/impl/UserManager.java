@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.it3.model.dao.interfaces.UserDAO;
@@ -72,6 +73,26 @@ public class UserManager extends JpaBaseDAO<User> implements UserDAO<User> {
 		Query query = em.createNamedQuery("User.searchByUsername");
 		query.setParameter("username", username);
 		User user = (User) query.getSingleResult();
+		em.close();
+		return user;
+	}
+
+
+	public User login(String username, String password) {
+		em = emf.createEntityManager();
+		
+		logger.info(String.format("login with username %s", username));
+		
+		Query query = em.createNamedQuery("User.login");
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		User user = null;
+		
+		try { 
+			user = (User) query.getSingleResult();
+		} catch (NoResultException ex) {
+			// User or password invalid!
+		}
 		em.close();
 		return user;
 	}

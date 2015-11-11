@@ -8,6 +8,9 @@ userws.onmessage = onMessage;
 
 function onMessage(event) {
     var user = JSON.parse(event.data);
+    
+    console.log('user=',user);
+    
     if (user.action === "add") {
     	parseJsonToTable(user);
     }
@@ -30,6 +33,12 @@ function onMessage(event) {
     }
     if (user.action === "edit") {
     	parseJsonToForm(user);
+    }
+    
+    if (user.action == "loginOk") {
+    	window.location.replace("application.html");
+    } else {
+    	$('#loginAlert').fadeIn();
     }
 }
 
@@ -145,6 +154,29 @@ function validateAndSubmitUser(form) {
 	   if (formValidate(form)) {
 		   userFormSubmit(form);
 	   }
+}
+
+function login(username, password) {
+	var user = {
+		action: "login",	
+		username: username,
+		password: password
+	};
+	
+	userws.send(JSON.stringify(user));
+}
+
+function showMessage(msg) {
+	$( '#dialog-login').dialog({
+	      resizable: false,
+	      height:180,
+	      modal: true,
+	      buttons: {
+	        Ok: function() {
+	          $( this ).dialog( "close" );
+	        }
+	      }
+	    });
 }
 
 function init() {

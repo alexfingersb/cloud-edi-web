@@ -63,7 +63,7 @@ public class LoggerManager extends JpaBaseDAO<MessageLog> implements MessageLogD
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Object[]> getLatestFilesSent(String from) {
+	public List<Object[]> getLatestFilesSent(long from) {
 		em = emf.createEntityManager();
 
 		StringBuilder sql = new StringBuilder();
@@ -82,7 +82,7 @@ public class LoggerManager extends JpaBaseDAO<MessageLog> implements MessageLogD
 		sql.append("AND urfrom.user_id = :userId ");
 		
 		Query query = em.createNativeQuery(sql.toString());
-		query.setParameter("userId", Long.valueOf(from));
+		query.setParameter("userId", from);
 		List<Object[]> list = new ArrayList<Object[]>();
 		try {
 			list  = (List<Object[]>) query.getResultList();
@@ -94,7 +94,7 @@ public class LoggerManager extends JpaBaseDAO<MessageLog> implements MessageLogD
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Object[]> getLatestFilesReceived(String to) {
+	public List<Object[]> getLatestFilesReceived(long to) {
 		em = emf.createEntityManager();
 
 		StringBuilder sql = new StringBuilder();
@@ -114,7 +114,7 @@ public class LoggerManager extends JpaBaseDAO<MessageLog> implements MessageLogD
 		
 		
 		Query query = em.createNativeQuery(sql.toString());
-		query.setParameter("userId", Long.valueOf(to));
+		query.setParameter("userId", to);
 		List<Object[]> list = new ArrayList<Object[]>();
 		try {
 			list  = (List<Object[]>) query.getResultList();

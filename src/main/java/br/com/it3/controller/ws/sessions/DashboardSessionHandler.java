@@ -68,9 +68,12 @@ public class DashboardSessionHandler {
 	
 	
 	public void listDashboard(Session session) {
+		User user = (User)session.getUserProperties().get("user");
 		
-        List<Object[]> sender   = manager.getLatestFilesSent("50");
-        List<Object[]> receiver = manager.getLatestFilesReceived("50");
+		logger.info("search files from user " + user);
+		
+        List<Object[]> sender   = manager.getLatestFilesSent(user.getId());
+        List<Object[]> receiver = manager.getLatestFilesReceived(user.getId());
         
         JsonArrayBuilder jaSender   = Json.createArrayBuilder();
         JsonArrayBuilder jaReceiver = Json.createArrayBuilder();

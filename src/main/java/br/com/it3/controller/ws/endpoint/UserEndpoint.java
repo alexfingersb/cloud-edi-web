@@ -67,6 +67,10 @@ public class UserEndpoint {
             } else if ("edit".equals(action)) {
             	int id = (int) jsonMessage.getInt("id");
             	sessionHandler.editUser(id, session);
+            } else if ("login".equals(action)) {
+            	String username = jsonMessage.getString("username");
+            	String password = jsonMessage.getString("password");
+            	sessionHandler.doLogin(username, password, session);
             }
         }
 	}

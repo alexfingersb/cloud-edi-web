@@ -99,5 +99,15 @@
   },
   "validation": {
   	"required_field_helper" : "Indica campos obrigatórios"
+  },
+  "login" : {
+  	"title" : "Acesso ao Sistema Cloud EDI",
+  	"username" : "Login",
+  	"password" : "Senha",
+  	"signin" : "Entrar",
+  	"rememberMe" : "Lembre de mim",
+  	"sorry" : "Desculpe-nos!",
+  	"invalidMessage": "Mas nós não conseguimos encontrar uma conta com este usuário e senha.",
+  	"tryAgain": "Por favor tente novamente!"
   }
 }

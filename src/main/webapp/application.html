@@ -46,8 +46,32 @@
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar">
-					<ul class="nav navbar-nav btn-lg"></ul>
+					<ul class="nav navbar-nav btn-lg">
+						<li>
+							<a href="pages/dashboard/dashboard.html">
+								<span class="glyphicon glyphicon-dashboard" aria-hidden="true" data-i18n="nav.dashboard"></span>
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+								
+						<li>
+							<a href="pages/context/route_list.html" onclick="listRoutes()">
+								<span class="glyphicon glyphicon-th-list" aria-hidden="true" data-i18n="nav.route"></span>
+							</a>
+						</li>
+							
+						<li>
+							<a href="pages/users/user_list.html" onclick="listUsers()">
+								<span class="glyphicon glyphicon-user"aria-hidden="true" data-i18n="nav.users"></span>
+							</a>
+						</li>
 						
+						<li>
+							<a href="pages/download/download.html" >
+								<span class="glyphicon glyphicon-cloud-download" aria-hidden="true" data-i18n="nav.downloads"></span>
+							</a>
+						</li>
+					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a href="#">
@@ -67,6 +91,16 @@
 							</a>
 						</li>
 						
+						<li>
+							<a href="pages/help/about.html">
+								<span data-i18n="nav.about"	class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+							</a>
+						</li>
+						<li>
+							<a href="logout">
+								<span data-i18n="nav.logoff" class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+							</a>
+						</li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -75,20 +109,44 @@
 		</nav>
 	</div>
 
-	<div id="content" class="container-custom"></div>
-	<div id="dialog-confirm" data-i18n="[title]dialog.title;dialog.confirm" style="display:none;" ></div>
-	
+	<div id="content" class="container-custom">
+	</div>
+	<div id="dialog-confirm" data-i18n="[title]dialog.title;dialog.confirm" style="display:none;" >
+	  	
+	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#content').load("pages/users/login.html");
+			$('a').click(function(e) {
+				e.preventDefault();
+				
+				console.log('href=',$(this).attr("href"));
+				
+				if ($(this).attr("href") === "logout") {
+					location.href = location.protocol + "//" + location.host
+				}
+				
+				if ($(this).attr("href") !== "#") {
+					$('#content').load($(this).attr('href'));
+				}
+			});
 		});
+		
+		i18n.init({
+			  fallbackLng: 'pt-BR'
+			  ,debug: true
+			  ,fixLng: true
+			  ,load: 'current'
+			},
+			 
+			function(translation) {
+			  $('[data-i18n]').i18n();
+			}
+		);
 		
 		$('.flags').on('click', function(e) {
 			e.preventDefault();
 			configureLocale($(this));
 		});
-		
-		configureLocale($(this));
 	</script>
 	
 </body>

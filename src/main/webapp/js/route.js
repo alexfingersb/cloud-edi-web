@@ -71,10 +71,6 @@ function parseEditRoute(data) {
 	data.context.route.forEach(function(obj) {
 		routeToTable(obj);
 	})
-	
-	
-    
-//    $("#div_out #inputFileRemoveAfter").val();
 }
 
 

@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.spi.JsonProvider;
 import javax.websocket.Session;
@@ -18,7 +19,7 @@ import br.com.it3.model.json.JsonUtil;
 
 @ApplicationScoped
 public class UserSessionHandler {
-	private final Set<Session> sessions = new HashSet<>();
+	private final static Set<Session> sessions = new HashSet<>();
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	private UserManager userDao = new UserManager();
 	
@@ -126,4 +127,27 @@ public class UserSessionHandler {
             Logger.getLogger(UserSessionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+	public void doLogin(String username, String password, Session session) {
+		User login = userDao.login(username, password);
+		
+		if (login != null) {
+			session.getUserProperties().put("user", login);
+			
+			User user = (User)session.getUserProperties().get("user");
+			logger.info("user session " + user.getId());
+			sessions.remove(session);
+			sessions.add(session);
+			sendToSession(session, Json.createObjectBuilder().add("action", "loginOk").build());
+		} else {
+			sendToSession(session, Json.createObjectBuilder().add("action", "loginError").build());
+		}
+	}
+	
+	public Session getSession(Session mysession) {
+		for (Session session : sessions) {
+        	if (session.getId() == mysession.getId())
+            	return session;
+        }
+	}
 }

@@ -20,6 +20,7 @@ import br.com.it3.model.enums.Profile;
 	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
 	@NamedQuery(name = "User.searchByName", query = "SELECT u FROM User u WHERE u.name LIKE :name"),
 	@NamedQuery(name = "User.searchByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
+	@NamedQuery(name = "User.login", query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password"),
 })
 @Table(name="\"USER\"")
 public class User implements Serializable {

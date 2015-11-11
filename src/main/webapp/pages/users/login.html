@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../css/login.css">
+<link rel="stylesheet" href="../../css/app.css">
+<link rel="stylesheet" href="../../css/bootstrap.css">
+</head>
+<body>
+	
+	<div class="container">
+
+		<form class="form-signin">
+			
+			<h2 class="form-signin-heading col-centered"><small data-i18n="login.title"></small></h2>
+			
+			<div id="loginAlert" class="alert alert-danger" role="alert" hidden>
+				<strong data-i18n="login.sorry"></strong>
+				<br><span data-i18n="login.invalidMessage"></span>
+				<br><span data-i18n="login.tryAgain"></span>
+			</div>
+			
+			<input type="email" id="inputUsername" class="form-control"
+				data-i18n="[placeholder]login.username" required autofocus> 
+			
+			<input type="password" id="inputPassword" class="form-control"
+				data-i18n="[placeholder]login.password" required>
+			
+			<div class="checkbox">
+				<label> 
+					<input type="checkbox" >
+					<span data-i18n="login.rememberMe"></span>
+				</label>
+			</div>
+			
+			<button id="login" class="btn btn-lg btn-primary btn-block" data-i18n="login.signin">
+				
+			</button>
+		</form>
+
+	</div>
+	<!-- /container -->
+	<div id="dialog-login" data-i18n="[title]login.accessDenied;login.invalidUserOrPass" style="display:none;" ></div>
+<script>
+	$(document).ready(function() {
+		$('#login').click(function(e) {
+			login($('#inputUsername').val(), $('#inputPassword').val());
+			e.preventDefault();
+		});
+		
+		$('input').keypress(function(e) {
+			$('#loginAlert').hide();
+		})
+		
+		configureLocale();
+	});
+</script>
+</body>
+</html>
