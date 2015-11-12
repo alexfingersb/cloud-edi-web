@@ -1,17 +1,23 @@
 package br.com.it3.controller.ws.sessions;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.spi.JsonProvider;
 import javax.websocket.Session;
 
+import br.com.it3.model.dao.impl.LoggerManager;
 import br.com.it3.model.dao.impl.UserManager;
 import br.com.it3.model.entities.User;
 import br.com.it3.model.json.JsonUtil;
@@ -21,7 +27,8 @@ import br.com.it3.model.json.JsonUtil;
 public class UserSessionHandler {
 	private final static Set<Session> sessions = new HashSet<>();
 	private Logger logger = Logger.getLogger(this.getClass().getName());
-	private UserManager userDao = new UserManager();
+	private UserManager usserManager = new UserManager();
+	LoggerManager loggerManager = new LoggerManager();
 	
 	public void addSession(Session session) {
 		if (sessions.add(session)) {
@@ -29,10 +36,6 @@ public class UserSessionHandler {
 		} else {
 			logger.info("[user] Sessao " + session.getId() + " ja existe");
 		}
-//        for (User user : users) {
-//            JsonObject addMessage = createAddMessage(user);
-//            sendToSession(session, addMessage);
-//        }
 	}
 
 	public void removeSession(Session session) {
@@ -42,14 +45,14 @@ public class UserSessionHandler {
 	}
 
 	public void getUsers(Session session) {
-		for (User user : userDao.findAll()) {
+		for (User user : usserManager.findAll()) {
 			JsonObject addMessage = createListMessage(user);
             sendToSession(session, addMessage);
 		}
 	}
 
 	public void addUser(User user, Session mysession) {
-		userDao.persist(user);
+		usserManager.persist(user);
         JsonObject addMessage = createAddMessage(user);
         sendToOtherConnectedSessions(addMessage, mysession);
 	}
@@ -57,8 +60,7 @@ public class UserSessionHandler {
 	public void removeUser(int id) {
         User user = getUserById(id);
         if (user != null) {
-        	userDao.remove(user);
-//            sessions.remove(user);
+        	usserManager.remove(user);
             JsonProvider provider = JsonProvider.provider();
             JsonObject removeMessage = provider.createObjectBuilder()
                     .add("action", "remove")
@@ -69,7 +71,7 @@ public class UserSessionHandler {
     }
 
 	private User getUserById(long id) {
-		User user = userDao.findById(id);
+		User user = usserManager.findById(id);
 		return user;
     }
 
@@ -89,7 +91,7 @@ public class UserSessionHandler {
     
     public void updateUser(User user, Session mysession) {
         if (user != null) {
-        	user = userDao.update(user);
+        	user = usserManager.update(user);
             JsonObject updateUser = buildUserJson(user, "udpate");
             sendToOtherConnectedSessions(updateUser, mysession);
         }
@@ -129,9 +131,10 @@ public class UserSessionHandler {
     }
 
 	public void doLogin(String username, String password, Session session) {
-		User login = userDao.login(username, password);
+		User login = usserManager.login(username, password);
 		
 		if (login != null) {
+			logger.info("add user properties to session_id=" + session.getId() + " and user=" + login.getId());
 			session.getUserProperties().put("user", login);
 			
 			User user = (User)session.getUserProperties().get("user");
@@ -144,10 +147,57 @@ public class UserSessionHandler {
 		}
 	}
 	
-	public Session getSession(Session mysession) {
-		for (Session session : sessions) {
-        	if (session.getId() == mysession.getId())
-            	return session;
+	/* The new Dashboard */
+	public void listDashboard(Session session) {
+		//logger.info("get user properties to session_id=" + session.getId());
+		//User user = (User)session.getUserProperties().get("user");
+		
+		//logger.info("search files from user " + user);
+		
+        List<Object[]> sender   = loggerManager.getLatestFilesSent(52L);
+        List<Object[]> receiver = loggerManager.getLatestFilesReceived(52L);
+        
+        JsonArrayBuilder jaSender   = Json.createArrayBuilder();
+        JsonArrayBuilder jaReceiver = Json.createArrayBuilder();
+        
+        
+        
+        for (Object obj[]: sender) {
+        	jaSender.add(Json.createObjectBuilder()
+        			.add("FileName", obj[0].toString())
+        			.add("FileLength", obj[1].toString())
+        			.add("FileLastModified", formatDatetime((Timestamp)obj[2]))
+        			.add("FileCrc", obj[3].toString())
+        			.add("SentDate", formatDatetime((Timestamp)obj[4]))
+        			.add("ReceivedDate", formatDatetime((Timestamp)obj[5]))
+        			.add("User", obj[6].toString())
+        			.build());
         }
+
+        for (Object obj[]: receiver) {
+        	jaReceiver.add(Json.createObjectBuilder()
+        			.add("FileName", (obj[0] == null ? "" : obj[0].toString()))
+        			.add("FileLength", (obj[1] == null ? "" : obj[1].toString()))
+        			.add("FileLastModified", (obj[2] == null ? "" : formatDatetime((Timestamp)obj[2])))
+        			.add("FileCrc", (obj[3] == null ? "" : obj[3].toString()))
+        			.add("SentDate", (obj[5] == null ? "" : formatDatetime((Timestamp)obj[4])))
+        			.add("ReceivedDate", (obj[5] == null ? "" : formatDatetime((Timestamp)obj[5])))
+        			.add("User", (obj[6] == null ? "" : obj[6].toString())))
+        			.build();
+        }
+        
+        JsonObject ja = Json.createObjectBuilder()
+        		.add("sender", jaSender)
+        		.add("receiver", jaReceiver)
+        		.build();
+        
+        logger.info(ja.toString());
+        
+        sendToSession(session, ja.toString());
+    }
+
+	private String formatDatetime(Timestamp date) {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		return df.format(date);
 	}
 }

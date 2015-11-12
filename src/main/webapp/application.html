@@ -119,10 +119,8 @@
 			$('a').click(function(e) {
 				e.preventDefault();
 				
-				console.log('href=',$(this).attr("href"));
-				
 				if ($(this).attr("href") === "logout") {
-					location.href = location.protocol + "//" + location.host
+					logout();
 				}
 				
 				if ($(this).attr("href") !== "#") {

@@ -9,8 +9,6 @@ userws.onmessage = onMessage;
 function onMessage(event) {
     var user = JSON.parse(event.data);
     
-    console.log('user=',user);
-    
     if (user.action === "add") {
     	parseJsonToTable(user);
     }
@@ -36,9 +34,17 @@ function onMessage(event) {
     }
     
     if (user.action == "loginOk") {
+    	var action = {action: "close"}
+    	userws.send(JSON.stringify(action));
     	window.location.replace("application.html");
     } else {
     	$('#loginAlert').fadeIn();
+    }
+    
+    if (!user.action) { // so is a json array
+    	dashboardTableSender(user.sender);
+    	dashboardTableReceiver(user.receiver);
+    	$('[data-i18n]').i18n();
     }
 }
 
@@ -179,7 +185,52 @@ function showMessage(msg) {
 	    });
 }
 
+function dashboardTableSender(sender) {
+	var tbody = $('#senderDashboardTable').find('tbody');
+	
+	sender.forEach(function(data) {
+		var row = $('<tr></tr>');
+		row.attr('id', data.id);
+		row.append('<td>' + data.FileName + '</td>');
+		row.append('<td>' + data.FileLength + '</td');
+		row.append('<td>' + data.FileCrc + '</td>');
+		row.append('<td>' + data.SentDate +'</td>');
+		row.append('<td>' + data.ReceivedDate   + '</td>');
+		tbody.append(row);
+	});
+}
+
+function dashboardTableReceiver(receiver) {
+	var tbody = $('#receiverDashboardTable').find('tbody');
+	
+	receiver.forEach(function(data) {
+		var row = $('<tr></tr>');
+		row.attr('id', data.id);
+		row.append('<td>' + data.FileName + '</td>');
+		row.append('<td>' + data.FileLength + '</td');
+		row.append('<td>' + data.FileCrc + '</td>');
+		row.append('<td>' + data.SentDate + '</td>');
+		row.append('<td>' + data.ReceivedDate +'</td>');
+		tbody.append(row);
+	});
+}
+
+function listDashboard() {
+    var dashboard = {
+        action: "listDashboard"
+    };
+    userws.send(JSON.stringify(dashboard));
+}
+
 function init() {
     //hideForm();
 	$.formUtils.loadModules('security, date');
 }
+
+function logout() {
+	var action = {action: "logout"}
+	userws.send(JSON.stringify(action));
+	location.href = location.protocol + "//" + location.host;
+}
+
+

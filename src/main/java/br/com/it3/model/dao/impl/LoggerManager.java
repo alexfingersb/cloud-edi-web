@@ -79,7 +79,7 @@ public class LoggerManager extends JpaBaseDAO<MessageLog> implements MessageLogD
 		sql.append("LEFT JOIN user_route urto      ON urto.route_uri_id   	= urito.id ");
 		sql.append("INNER JOIN \"USER\" userfrom   ON userfrom.id 			= urfrom.user_id ");
 		sql.append("LEFT JOIN \"USER\" userto      ON userto.id   			= urto.user_id ");
-		sql.append("AND urfrom.user_id = :userId ");
+		sql.append("WHERE urfrom.user_id = :userId ");
 		
 		Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("userId", from);
@@ -103,14 +103,14 @@ public class LoggerManager extends JpaBaseDAO<MessageLog> implements MessageLogD
 		sql.append("userfrom.Name as sender, userto.name as receiver ");
 		sql.append("FROM message_log ml ");
 		sql.append("INNER JOIN route_from rfrom    ON rfrom.id 				= ml.route_from_id "); 
-		sql.append("INNER JOIN route_to rto        ON rto.id   				= ml.Route_To_Id ");
+		sql.append("RIGHT JOIN route_to rto        ON rto.id   				= ml.Route_To_Id ");
 		sql.append("INNER JOIN route_uri urifrom   ON urifrom.id 			= rfrom.route_uri_id ");
-		sql.append("INNER JOIN route_uri urito     ON urito.id   			= rto.route_uri_id ");
+		sql.append("RIGHT JOIN route_uri urito     ON urito.id   			= rto.route_uri_id ");
 		sql.append("INNER JOIN user_route urfrom   ON urfrom.route_uri_id 	= urifrom.id ");
-		sql.append("INNER JOIN user_route urto     ON urto.route_uri_id   	= urito.id ");
+		sql.append("RIGHT JOIN user_route urto     ON urto.route_uri_id   	= urito.id ");
 		sql.append("INNER JOIN \"USER\" userfrom   ON userfrom.id 			= urfrom.user_id ");
-		sql.append("INNER JOIN \"USER\" userto     ON userto.id   			= urto.user_id ");
-		sql.append("AND urto.user_id = :userId ");
+		sql.append("RIGHT JOIN \"USER\" userto     ON userto.id   			= urto.user_id ");
+		sql.append("WHERE urto.user_id = :userId ");
 		
 		
 		Query query = em.createNativeQuery(sql.toString());

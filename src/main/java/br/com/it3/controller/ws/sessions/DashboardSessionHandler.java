@@ -14,11 +14,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.json.JsonValue;
 import javax.websocket.Session;
 
 import br.com.it3.model.dao.impl.LoggerManager;
-import br.com.it3.model.entities.MessageLog;
 import br.com.it3.model.entities.Route;
 import br.com.it3.model.entities.User;
 import br.com.it3.model.json.JsonUtil;

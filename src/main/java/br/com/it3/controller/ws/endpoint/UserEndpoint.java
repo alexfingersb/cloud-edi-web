@@ -1,5 +1,6 @@
 package br.com.it3.controller.ws.endpoint;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,6 +72,14 @@ public class UserEndpoint {
             	String username = jsonMessage.getString("username");
             	String password = jsonMessage.getString("password");
             	sessionHandler.doLogin(username, password, session);
+            } else if ("listDashboard".equals(action)) {
+            	sessionHandler.listDashboard(session);
+            } else if ("close".equals(action)) {
+            	try {
+					session.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
             }
         }
 	}
