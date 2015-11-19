@@ -159,6 +159,7 @@ public class DownloadSessionHandler {
 		Address from = new Address();
         from.setUri(routeFrom.getRouteUri().toString());
         
+        
         br.com.it3.model.xml.Route route = new br.com.it3.model.xml.Route();
         route.setId(String.valueOf(routeFrom.getId()));
         route.setFrom(from);

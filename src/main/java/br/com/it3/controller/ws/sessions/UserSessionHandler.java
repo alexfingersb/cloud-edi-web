@@ -154,8 +154,8 @@ public class UserSessionHandler {
 		
 		//logger.info("search files from user " + user);
 		
-        List<Object[]> sender   = loggerManager.getLatestFilesSent(52L);
-        List<Object[]> receiver = loggerManager.getLatestFilesReceived(52L);
+        List<Object[]> sender   = loggerManager.getLatestFilesSent(50L);
+        List<Object[]> receiver = loggerManager.getLatestFilesReceived(50L);
         
         JsonArrayBuilder jaSender   = Json.createArrayBuilder();
         JsonArrayBuilder jaReceiver = Json.createArrayBuilder();

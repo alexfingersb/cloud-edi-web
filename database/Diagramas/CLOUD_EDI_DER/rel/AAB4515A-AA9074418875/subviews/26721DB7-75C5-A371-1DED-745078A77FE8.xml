@@ -46,11 +46,11 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A125A40A-566F-4195-C723-02E1D969DB14" otype="Table" vid="6846A126-4C90-1AAE-1661-3DA47F2432FB">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="170" y="27" width="220" height="125"/>
+<bounds x="170" y="16" width="220" height="150"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="E87B4787-7C9D-78CC-F53B-9CD6FCA5D7CA" otype="Table" vid="F831F025-A359-6DA7-EFEA-DE5645EBE422">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="469" y="22" width="235" height="166"/>
+<bounds x="469" y="10" width="235" height="178"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="E95476A8-7440-8ADD-D0C0-7CE984A64DF4" otype="Table" vid="FF7BEE37-27FC-4900-9B4B-457BCC1E13BF">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -90,8 +90,8 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="469" y="89"/>
-<point x="390" y="89"/>
+<point x="469" y="91"/>
+<point x="390" y="91"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="B6C932E6-8FCE-E46F-C6D9-94388EB66230" otype="FKIndexAssociation" vid_source="448A449C-A730-5A03-744B-BE9329B01BE6" vid_target="C9D8C14F-8E4F-A36D-342C-045F224FD01B">
@@ -131,15 +131,15 @@
 <lineWidth>1</lineWidth>
 <points>
 <point x="208" y="216"/>
-<point x="208" y="152"/>
+<point x="208" y="166"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="FC69630C-C53F-84BD-0EB0-853B81841D6E" otype="FKIndexAssociation" vid_source="448A449C-A730-5A03-744B-BE9329B01BE6" vid_target="6846A126-4C90-1AAE-1661-3DA47F2432FB">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="430" y="216"/>
-<point x="241" y="152"/>
+<point x="350" y="216"/>
+<point x="350" y="166"/>
 </points>
 </Connector>
 </connectors>

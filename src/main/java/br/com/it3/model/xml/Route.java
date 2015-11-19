@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = { "from", "to", "choice" })
+@XmlType(propOrder = { "from", "process", "to", "choice" })
 public class Route {
 
 	@XmlAttribute
@@ -14,10 +14,17 @@ public class Route {
 	private Address from;
 	
 	@XmlElement
+	public Process process;
+	
+	@XmlElement
 	private Address to;
 
 	@XmlElement
 	private Choice choice;
+	
+	public Route() {
+		this.process = new Process();
+	}
 
 	public void setTo(Address to) {
 		this.to = to;
@@ -34,5 +41,4 @@ public class Route {
 	public void setChoice(Choice choice) {
 		this.choice = choice;
 	}
-
 }
