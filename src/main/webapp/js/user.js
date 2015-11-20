@@ -17,13 +17,13 @@ function onMessage(event) {
         row.parentNode.removeChild(row);
     }
     if (user.action === "update") {
-        var node = document.getElementById(user.id);
-        var statusText = node.children[2];
-        if (device.status === "On") {
-            statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" OnClick=toggleDevice(" + device.id + ")>Turn off</a>)";
-        } else if (device.status === "Off") {
-            statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" OnClick=toggleDevice(" + device.id + ")>Turn on</a>)";
-        }
+//        var node = document.getElementById(user.id);
+//        var statusText = node.children[2];
+//        if (device.status === "On") {
+//            statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" OnClick=toggleDevice(" + device.id + ")>Turn off</a>)";
+//        } else if (device.status === "Off") {
+//            statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" OnClick=toggleDevice(" + device.id + ")>Turn on</a>)";
+//        }
     }
     if (user.action === "list") {
     	parseJsonToTable(user);
@@ -34,9 +34,11 @@ function onMessage(event) {
     }
     
     if (user.action == "loginOk") {
-    	var action = {action: "close"}
-    	userws.send(JSON.stringify(action));
-    	window.location.replace("application.html");
+    	$("#menu-navbar").show();
+    	$("#menu-about").show();
+    	$("#menu-logout").show();
+    	$("#content").load("pages/dashboard/dashboard.html");
+    	
     } else {
     	$('#loginAlert').fadeIn();
     }
@@ -142,9 +144,6 @@ function listUsers() {
 }
 
 function userFormSubmit(form) {
-	
-//	var lng  = parseValidationLang(i18n.lng());
-
 	var id 			= form.elements["inputId"].value;
     var name 		= form.elements["inputName"].value;
     var email 		= form.elements["inputEmail"].value;
@@ -223,14 +222,25 @@ function listDashboard() {
 }
 
 function init() {
-    //hideForm();
+	if ($.cookie("logged") === undefined) {
+		$('#content').load("pages/users/login.html");
+		$("#menu-navbar").hide();
+		$("#menu-about").hide();
+		$("#menu-logout").hide();
+	}
+	
 	$.formUtils.loadModules('security, date');
 }
 
 function logout() {
 	var action = {action: "logout"}
 	userws.send(JSON.stringify(action));
+	$.removeCookie("logged");
+	$("#menu-navbar").hide();
+	$("#menu-about").hide();
+	$("#menu-logout").hide();
 	location.href = location.protocol + "//" + location.host;
+	
 }
 
 

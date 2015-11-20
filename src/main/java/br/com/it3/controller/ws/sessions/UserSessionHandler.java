@@ -149,13 +149,13 @@ public class UserSessionHandler {
 	
 	/* The new Dashboard */
 	public void listDashboard(Session session) {
-		//logger.info("get user properties to session_id=" + session.getId());
-		//User user = (User)session.getUserProperties().get("user");
+		logger.info("get user properties to session_id=" + session.getId());
+		User user = (User)session.getUserProperties().get("user");
 		
-		//logger.info("search files from user " + user);
+		logger.info("search files from user " + user);
 		
-        List<Object[]> sender   = loggerManager.getLatestFilesSent(50L);
-        List<Object[]> receiver = loggerManager.getLatestFilesReceived(50L);
+        List<Object[]> sender   = loggerManager.getLatestFilesSent(user.getId());
+        List<Object[]> receiver = loggerManager.getLatestFilesReceived(user.getId());
         
         JsonArrayBuilder jaSender   = Json.createArrayBuilder();
         JsonArrayBuilder jaReceiver = Json.createArrayBuilder();
